@@ -1,0 +1,2553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sustentación · Huellas que vencieron el fuego — Daisy Johana Fernández Girón</title>
+<meta name="description" content="Presentación interactiva para la sustentación del trabajo de grado «Recuperación de información sobre la trayectoria e incidencia pública de Arcenio Fernández Vega». Daisy Johana Fernández Girón · Pontificia Universidad Javeriana · CIBAR · 2026.">
+<meta name="author" content="Daisy Johana Fernández Girón">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314110F'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='32' fill='%23B4632B' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<style>
+/* ============================================================
+   HUELLAS QUE VENCIERON EL FUEGO — MODO SUSTENTACIÓN
+   Escenario fijo de 1280 × 720 px escalado a la pantalla.
+   Atajos: ← → navegar · O índice · N guion · F pantalla completa
+   ============================================================ */
+
+:root{
+  --ink:#12100E; --ink-2:#191510; --ink-3:#221C15; --ink-4:#2B231B;
+  --paper:#EFE7DA; --paper-2:#E4DACB; --paper-3:#D8CCBA;
+  --ash:#8B8175; --ash-2:#6A625A;
+  --brasa:#B4632B; --brasa-l:#D07C42; --amber:#C39A52; --slate:#6E8E92;
+  --ok:#5E8B62; --warn:#B4632B;
+  --rule:rgba(239,231,218,.15); --rule-2:rgba(239,231,218,.08);
+  --rule-d:rgba(18,16,14,.14); --rule-d2:rgba(18,16,14,.07);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --W:1280px; --H:720px; --scale:1; --fs:1;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:#0A0908; color:var(--paper);
+  font-family:var(--sans); overflow:hidden;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+button{font:inherit; color:inherit; background:none; border:0; cursor:pointer}
+img{max-width:100%; display:block}
+::selection{background:var(--brasa); color:#fff}
+
+/* ---------- Escenario ---------- */
+.deck{position:fixed; inset:0; background:radial-gradient(120% 90% at 50% 0%,#141110 0%,#080706 70%); overflow:hidden}
+.slide{
+  position:absolute; left:50%; top:50%; width:var(--W); height:var(--H);
+  margin-left:calc(var(--W) / -2); margin-top:calc(var(--H) / -2);
+  transform:translate3d(0,16px,0) scale(var(--scale));
+  transform-origin:center center;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .42s var(--ease), transform .52s var(--ease), visibility .42s;
+  background:var(--ink); color:var(--paper);
+  box-shadow:0 40px 120px -40px rgba(0,0,0,.9);
+  overflow:hidden;
+}
+.slide.is-active{opacity:1; visibility:visible; pointer-events:auto; transform:translate3d(0,0,0) scale(var(--scale))}
+.slide.is-prev{transform:translate3d(0,-14px,0) scale(var(--scale))}
+@media (prefers-reduced-motion:reduce){
+  .slide{transition:opacity .18s linear; transform:scale(var(--scale))}
+}
+
+/* Temas */
+.slide[data-theme="paper"]{background:var(--paper); color:#1B1611}
+.slide[data-theme="fire"]{background:radial-gradient(90% 120% at 50% 110%,#3A1C0C 0%,#181310 55%,#100E0C 100%)}
+.slide[data-theme="paper"] .rule{background:var(--rule-d)}
+
+/* Textura sutil de papel */
+.slide[data-theme="paper"]::before{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+  background-image:repeating-linear-gradient(90deg,rgba(18,16,14,.028) 0 1px,transparent 1px 4px),
+                   repeating-linear-gradient(0deg,rgba(18,16,14,.022) 0 1px,transparent 1px 5px);
+}
+
+/* Marco */
+.pad{position:absolute; inset:0; padding:38px 56px 40px; display:flex; flex-direction:column; gap:14px}
+.slide[data-theme="paper"] .pad{padding:40px 56px 42px}
+.rule{position:absolute; left:60px; right:60px; top:28px; height:1px; background:var(--rule); opacity:.9}
+
+/* Cabecera de diapositiva */
+.shead{position:relative; z-index:2; flex:0 0 auto}
+.eyebrow{
+  font-size:10.5px; letter-spacing:.20em; text-transform:uppercase; font-weight:650;
+  color:var(--brasa-l); margin:0 0 8px; display:flex; align-items:center; gap:9px;
+}
+.slide[data-theme="paper"] .eyebrow{color:#8A4A1E}
+.eyebrow::after{content:""; flex:1; height:1px; background:currentColor; opacity:.25; max-width:120px}
+h1,h2,h3,h4{margin:0; font-family:var(--serif); font-weight:600; letter-spacing:-.012em}
+h2{font-size:33px; line-height:1.14}
+.lead{margin:8px 0 0; font-size:15.5px; line-height:1.5; color:rgba(239,231,218,.72); max-width:88ch}
+.slide[data-theme="paper"] .lead{color:rgba(27,22,17,.70)}
+
+/* Cuerpo escalable */
+.sbody{
+  position:relative; z-index:2; flex:1 1 auto; min-height:0; overflow:hidden;
+  font-size:calc(1em * var(--fs)); padding-top:4px;
+}
+.sbody > .sgap{display:flex; flex-direction:column; gap:14px; height:100%; justify-content:flex-start}
+.sbody > .sgap > *{flex:0 0 auto}
+
+/* ---------- Piezas ---------- */
+.grid{display:grid; gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g5{grid-template-columns:repeat(5,1fr)}
+.g21{grid-template-columns:1.35fr .9fr}
+.g12{grid-template-columns:.85fr 1.15fr}
+
+.card{
+  background:rgba(239,231,218,.045); border:1px solid var(--rule);
+  border-radius:3px; padding:15px 16px; display:flex; flex-direction:column; gap:7px;
+  position:relative; overflow:hidden;
+}
+.slide[data-theme="paper"] .card{background:rgba(255,255,255,.42); border-color:var(--rule-d)}
+.card h3{font-size:16px; line-height:1.25}
+.card p{margin:0; font-size:12.8px; line-height:1.5; color:rgba(239,231,218,.74)}
+.slide[data-theme="paper"] .card p{color:rgba(27,22,17,.74)}
+.card .num{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; color:var(--brasa-l);
+  text-transform:uppercase;
+}
+.slide[data-theme="paper"] .card .num{color:#8A4A1E}
+.card--accent{border-left:2px solid var(--brasa)}
+.card--flat{background:none; border:0; padding:0}
+
+.kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+.kpi{padding:12px 14px; border:1px solid var(--rule); border-radius:3px; background:rgba(239,231,218,.03)}
+.kpi b{display:block; font-family:var(--serif); font-size:38px; line-height:1; color:var(--brasa-l); letter-spacing:-.02em}
+.slide[data-theme="paper"] .kpi{border-color:var(--rule-d); background:rgba(255,255,255,.4)}
+.slide[data-theme="paper"] .kpi b{color:#8A4A1E}
+.kpi span{display:block; margin-top:7px; font-size:11.5px; line-height:1.35; color:rgba(239,231,218,.66)}
+.slide[data-theme="paper"] .kpi span{color:rgba(27,22,17,.66)}
+
+ul.clean{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px}
+ul.clean li{position:relative; padding-left:16px; font-size:12.9px; line-height:1.5; color:rgba(239,231,218,.8)}
+.slide[data-theme="paper"] ul.clean li{color:rgba(27,22,17,.8)}
+ul.clean li::before{content:""; position:absolute; left:0; top:.55em; width:5px; height:5px; background:var(--brasa); border-radius:50%}
+ul.clean li b{color:var(--paper)}
+.slide[data-theme="paper"] ul.clean li b{color:#1B1611}
+
+.tag{
+  display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border-radius:2px;
+  font-size:9.8px; letter-spacing:.13em; text-transform:uppercase; font-weight:650;
+  border:1px solid currentColor; color:var(--amber); white-space:nowrap;
+}
+.tag--doc{color:#7FA98C} .tag--oral{color:#C39A52} .tag--gap{color:#C4694B}
+.tag--ok{color:#7FA98C} .tag--warn{color:#C4694B} .tag--mut{color:var(--ash)}
+
+.blockquote{
+  font-family:var(--serif); font-style:italic; font-size:26px; line-height:1.4;
+  letter-spacing:-.01em; margin:0; text-wrap:balance;
+}
+.blockquote em{font-style:italic; color:var(--brasa-l)}
+.src{font-size:11px; letter-spacing:.05em; color:var(--ash); margin:12px 0 0}
+.slide[data-theme="paper"] .src{color:var(--ash-2)}
+
+.fig{position:relative; border:1px solid var(--rule); background:rgba(0,0,0,.25); border-radius:2px; overflow:hidden; display:flex; flex-direction:column}
+.fig img{max-height:var(--figh,330px)}
+.slide[data-theme="paper"] .fig{border-color:var(--rule-d); background:rgba(255,255,255,.55)}
+.fig img{width:100%; flex:0 1 auto; min-height:0; object-fit:cover; object-position:center top; cursor:zoom-in; transition:filter .25s}
+.fig:hover img{filter:brightness(1.05)}
+.fig--contain{background:#0F0D0B}
+.fig--contain img{object-fit:contain; object-position:center center; padding:8px; max-height:var(--figh,340px)}
+.fig--paper{background:#F6F1E7}
+.fig--paper img{object-fit:contain; object-position:center center; padding:6px; max-height:var(--figh,340px)}
+[data-gallery] .fig{height:100%; min-height:0}
+[data-gallery] .fig img{flex:1 1 0; height:0; max-height:none}
+.fig--p30 img{object-position:center 30%}
+.fig--p38 img{object-position:center 38%}
+.fig .cap{padding:8px 10px; font-size:10.5px; line-height:1.35; color:var(--ash); border-top:1px solid var(--rule-2)}
+.slide[data-theme="paper"] .fig .cap{color:var(--ash-2); border-top-color:var(--rule-d2)}
+.fig .cap b{color:rgba(239,231,218,.8); font-weight:600}
+.slide[data-theme="paper"] .fig .cap b{color:rgba(27,22,17,.85)}
+.fig--bare{border:0; background:none}
+
+.table{width:100%; border-collapse:collapse; font-size:12.2px}
+.table--dense{font-size:11.4px}
+.table--dense th,.table--dense td{padding:5.5px 9px; line-height:1.38}
+.table caption{caption-side:bottom; padding-top:8px; font-size:10.5px; color:var(--ash); text-align:left}
+.table th,.table td{text-align:left; padding:7px 10px; border-bottom:1px solid var(--rule-2); vertical-align:top; line-height:1.42}
+.slide[data-theme="paper"] .table th,.slide[data-theme="paper"] .table td{border-bottom-color:var(--rule-d2)}
+.table th{font-size:9.6px; letter-spacing:.13em; text-transform:uppercase; color:var(--ash); font-weight:650; border-bottom-color:var(--rule)}
+.table td b{font-weight:600}
+.table tr:last-child td{border-bottom:0}
+.code{font-family:var(--mono); font-size:10.6px; color:var(--brasa-l); letter-spacing:.02em; white-space:nowrap}
+.slide[data-theme="paper"] .code{color:#8A4A1E}
+
+.note{
+  border:1px dashed rgba(196,105,75,.55); background:rgba(180,99,43,.07);
+  border-radius:3px; padding:11px 13px; font-size:12.2px; line-height:1.5; color:rgba(239,231,218,.82);
+}
+.slide[data-theme="paper"] .note{color:rgba(27,22,17,.82); background:rgba(180,99,43,.06)}
+.note b{color:var(--brasa-l)} .slide[data-theme="paper"] .note b{color:#8A4A1E}
+
+.hr{height:1px; background:var(--rule); border:0; margin:2px 0}
+.slide[data-theme="paper"] .hr{background:var(--rule-d)}
+
+/* Portada */
+.cover{padding-top:38px}
+.cover .uni{font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--ash); font-weight:600}
+.cover h1{font-size:58px; line-height:1.02; letter-spacing:-.02em; margin-top:18px}
+.cover h1 em{font-style:italic; color:var(--brasa-l)}
+.cover .sub{margin-top:16px; font-family:var(--serif); font-size:17px; line-height:1.45; color:rgba(239,231,218,.8); max-width:60ch}
+.cover .meta{margin-top:auto; display:flex; gap:40px; align-items:flex-end; border-top:1px solid var(--rule); padding-top:16px}
+.cover .meta div span{display:block; font-size:9.6px; letter-spacing:.16em; text-transform:uppercase; color:var(--ash); margin-bottom:4px}
+.cover .meta div b{font-family:var(--serif); font-weight:600; font-size:15.5px; letter-spacing:-.01em}
+.cover .portrait{position:absolute; right:56px; top:44px; bottom:110px; width:330px; display:flex; flex-direction:column; gap:8px; z-index:1}
+.cover .portrait .frame{flex:1; overflow:hidden; border:1px solid var(--rule); background:#0d0b09}
+.cover .portrait img{width:100%; height:100%; object-fit:cover; filter:contrast(1.02) saturate(.95)}
+.cover .portrait .cap{font-size:10px; line-height:1.4; color:var(--ash)}
+.cover .content{max-width:730px; display:flex; flex-direction:column; height:100%}
+
+/* Divisor de sección */
+.divider{display:flex; flex-direction:column; justify-content:center; height:100%; gap:14px}
+.divider .big{font-family:var(--serif); font-size:104px; line-height:.9; color:rgba(180,99,43,.30); letter-spacing:-.03em}
+.divider h2{font-size:44px}
+.divider p{margin:0; font-size:15px; line-height:1.5; color:rgba(239,231,218,.66); max-width:64ch}
+.divider .kicker{font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--brasa-l); font-weight:650}
+
+/* Línea de tiempo */
+.tl{display:flex; gap:0; align-items:stretch}
+.tl .st{flex:1; padding:0 14px; position:relative; display:flex; flex-direction:column; gap:6px}
+.tl .st:first-child{padding-left:0}
+.tl .st:last-child{padding-right:0}
+.tl .st::before{content:""; position:absolute; left:0; right:14px; top:9px; height:1px; background:var(--rule)}
+.slide[data-theme="paper"] .tl .st::before{background:var(--rule-d)}
+.tl .st:last-child::before{right:0}
+.tl .dot{width:9px; height:9px; border-radius:50%; background:var(--brasa); position:relative; z-index:1; margin-bottom:4px; box-shadow:0 0 0 4px var(--ink)}
+.slide[data-theme="paper"] .tl .dot{box-shadow:0 0 0 4px var(--paper)}
+.tl .yr{font-family:var(--mono); font-size:12px; letter-spacing:.02em; color:var(--brasa-l); font-weight:600}
+.slide[data-theme="paper"] .tl .yr{color:#8A4A1E}
+.tl .tt{font-family:var(--serif); font-size:15.5px; line-height:1.24; letter-spacing:-.01em}
+.tl .tx{font-size:11.6px; line-height:1.45; color:rgba(239,231,218,.7)}
+.slide[data-theme="paper"] .tl .tx{color:rgba(27,22,17,.7)}
+
+/* Chips de evidencia */
+.evs{display:flex; flex-wrap:wrap; gap:5px; margin-top:6px; padding-top:2px}
+.card .evs{margin-top:auto}
+.ev{font-size:8.8px; letter-spacing:.1em; text-transform:uppercase; font-weight:650; padding:2px 6px; border:1px solid currentColor; border-radius:2px; white-space:nowrap}
+.ev--doc{color:#7FA98C} .ev--cor{color:var(--amber)} .ev--oral{color:var(--brasa-l)} .ev--gap{color:#C4694B}
+
+/* Índice de diapositivas (overlay) */
+.ui{position:fixed; z-index:60; color:var(--paper); font-family:var(--sans)}
+.ui-top{top:0; left:0; right:0; display:flex; align-items:center; justify-content:space-between; padding:14px 18px; pointer-events:none}
+.ui-top > *{pointer-events:auto}
+.ui-brand{display:flex; align-items:center; gap:10px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(239,231,218,.55); font-weight:600}
+.ui-brand b{font-family:var(--serif); letter-spacing:.02em; text-transform:none; font-size:13px; color:rgba(239,231,218,.85); font-weight:600}
+.mark{width:26px; height:26px; border:1px solid rgba(239,231,218,.3); display:grid; place-items:center; font-family:var(--serif); font-size:12px; color:var(--brasa-l)}
+.tools{display:flex; gap:6px; align-items:center}
+.tool{
+  width:34px; height:34px; display:grid; place-items:center; border:1px solid rgba(239,231,218,.16);
+  border-radius:2px; color:rgba(239,231,218,.72); background:rgba(18,16,14,.5); backdrop-filter:blur(6px);
+  transition:color .2s, border-color .2s, background .2s;
+}
+.tool:hover{color:var(--paper); border-color:rgba(239,231,218,.4); background:rgba(18,16,14,.8)}
+.tool svg{width:16px; height:16px}
+.tool.is-on{color:var(--brasa-l); border-color:rgba(180,99,43,.6)}
+.ui-bottom{bottom:0; left:0; right:0; display:flex; align-items:center; gap:16px; padding:12px 20px 14px; font-size:11px; color:rgba(239,231,218,.55)}
+.ui-bottom .ctr{font-family:var(--mono); letter-spacing:.08em; white-space:nowrap}
+.ui-bottom .sec{letter-spacing:.14em; text-transform:uppercase; font-size:9.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.bar{flex:1; height:2px; background:rgba(239,231,218,.13); position:relative; overflow:hidden}
+.bar i{position:absolute; inset:0 auto 0 0; width:5%; background:linear-gradient(90deg,var(--brasa),var(--brasa-l)); transition:width .35s var(--ease)}
+.arrow{
+  position:fixed; top:50%; transform:translateY(-50%); z-index:55; width:42px; height:64px;
+  display:grid; place-items:center; color:rgba(239,231,218,.34); background:none; border:0;
+  transition:color .2s, opacity .2s; opacity:.5;
+}
+.arrow:hover{color:var(--paper); opacity:1}
+.arrow[disabled]{opacity:.12; cursor:default}
+.arrow.prev{left:6px} .arrow.next{right:6px}
+@media (hover:hover){ .arrow{opacity:0} .deck:hover .arrow{opacity:.55} }
+
+/* Overlays */
+.ov{position:fixed; inset:0; z-index:80; display:none; background:rgba(8,7,6,.94); backdrop-filter:blur(3px); color:var(--paper); overflow:auto}
+.ov.is-open{display:block}
+.ov-head{display:flex; align-items:flex-start; justify-content:space-between; gap:20px; padding:26px 34px 18px; border-bottom:1px solid rgba(239,231,218,.1); position:sticky; top:0; background:rgba(12,10,9,.96); z-index:2}
+.ov-head h2{font-size:24px}
+.ov-head p{margin:6px 0 0; font-size:12px; color:var(--ash)}
+.ov-body{padding:24px 34px 60px}
+.idx-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:10px}
+.idx-card{
+  display:flex; gap:10px; align-items:flex-start; text-align:left; padding:11px 12px;
+  border:1px solid rgba(239,231,218,.12); background:rgba(239,231,218,.03); border-radius:2px;
+  transition:border-color .2s, background .2s, transform .2s;
+}
+.idx-card:hover{border-color:rgba(180,99,43,.7); background:rgba(180,99,43,.10); transform:translateY(-1px)}
+.idx-card.is-current{border-color:var(--brasa-l); background:rgba(180,99,43,.16)}
+.idx-card .n{font-family:var(--mono); font-size:10.5px; color:var(--brasa-l); padding-top:2px; min-width:20px}
+.idx-card .t{font-size:12.4px; line-height:1.32; font-weight:550; display:block}
+.idx-card .s{display:block; margin-top:3px; font-size:9.6px; letter-spacing:.11em; text-transform:uppercase; color:var(--ash)}
+.idx-group{margin:26px 0 10px; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--brasa-l); font-weight:650}
+
+.panel{
+  position:fixed; top:0; right:0; bottom:0; width:min(420px,92vw); z-index:85;
+  background:#14110E; border-left:1px solid rgba(239,231,218,.14);
+  transform:translateX(102%); transition:transform .38s var(--ease);
+  display:flex; flex-direction:column; color:var(--paper);
+}
+.panel.is-open{transform:none}
+.panel-head{padding:20px 22px 14px; border-bottom:1px solid rgba(239,231,218,.1); display:flex; justify-content:space-between; align-items:flex-start; gap:12px}
+.panel-head h2{font-size:19px; line-height:1.2}
+.panel-head .k{font-size:9.6px; letter-spacing:.16em; text-transform:uppercase; color:var(--brasa-l); font-weight:650; display:block; margin-bottom:6px}
+.panel-body{padding:18px 22px 40px; overflow:auto; flex:1}
+.panel-body h3{font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--ash); font-family:var(--sans); font-weight:650; margin:18px 0 8px}
+.panel-body h3:first-child{margin-top:0}
+.panel-body ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:9px}
+.panel-body li{position:relative; padding-left:15px; font-size:12.7px; line-height:1.55; color:rgba(239,231,218,.84)}
+.panel-body li::before{content:""; position:absolute; left:0; top:.58em; width:4px; height:4px; background:var(--brasa); border-radius:50%}
+.panel-body .warn{font-size:12px; line-height:1.5; color:#D98A6A; border-left:2px solid rgba(196,105,75,.6); padding-left:11px; margin:14px 0 0}
+.panel-foot{padding:12px 22px 16px; border-top:1px solid rgba(239,231,218,.1); font-size:11px; color:var(--ash); display:flex; justify-content:space-between; align-items:center; gap:10px}
+.timebox{font-family:var(--mono); font-size:12px; color:var(--paper); letter-spacing:.04em}
+
+/* Lightbox */
+.lb{position:fixed; inset:0; z-index:95; display:none; background:rgba(6,5,5,.97); padding:28px}
+.lb.is-open{display:flex; flex-direction:column; gap:12px; align-items:center; justify-content:center}
+.lb img{max-width:94vw; max-height:78vh; object-fit:contain; border:1px solid rgba(239,231,218,.2); background:#fff}
+.lb .cap{max-width:900px; font-size:11.5px; line-height:1.5; color:rgba(239,231,218,.7); text-align:center}
+.lb .x{position:absolute; top:16px; right:18px}
+
+/* Ayuda */
+.help-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 26px; max-width:760px; margin:0 auto}
+.help-row{display:flex; justify-content:space-between; gap:16px; padding:8px 0; border-bottom:1px solid rgba(239,231,218,.08); font-size:12.5px; color:rgba(239,231,218,.8)}
+kbd{font-family:var(--mono); font-size:11px; padding:2px 6px; border:1px solid rgba(239,231,218,.24); border-bottom-width:2px; border-radius:3px; color:var(--paper); background:rgba(239,231,218,.06); white-space:nowrap}
+
+.hint{position:fixed; left:50%; bottom:52px; transform:translateX(-50%); z-index:50; font-size:10.6px; letter-spacing:.13em; text-transform:uppercase; color:rgba(239,231,218,.42); display:flex; gap:14px; align-items:center; transition:opacity .6s; pointer-events:none}
+.hint.is-hidden{opacity:0}
+
+/* ---------- Pantallas pequeñas ---------- */
+@media (max-width:900px){
+  .ui-top{padding:8px 10px}
+  .ui-brand{font-size:9.5px; letter-spacing:.1em; max-width:56vw}
+  .ui-brand b{font-size:11px; display:block; line-height:1.2}
+  .ui-brand > span:last-child{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .mark{width:22px; height:22px; font-size:10.5px}
+  .tool{width:30px; height:30px}
+  .tool svg{width:14px; height:14px}
+  .tools{gap:4px}
+  .ui-bottom{padding:7px 12px 9px; gap:10px; font-size:9.5px}
+  .ui-bottom .sec{display:none}
+  .arrow{display:none}
+  .hint{bottom:38px; font-size:9px; gap:8px; letter-spacing:.08em}
+  .panel{width:100vw; border-left:0}
+  .ov-head{padding:16px 18px 12px}
+  .ov-body{padding:14px 16px 40px}
+  .idx-grid{grid-template-columns:1fr}
+  .help-grid{grid-template-columns:1fr}
+  .lb{padding:14px}
+}
+@media (max-height:520px) and (orientation:landscape){
+  .ui-top{padding:6px 10px}
+  .ui-brand{display:none}
+  .ui-bottom{padding:5px 12px 7px}
+  .hint{display:none}
+}
+
+.blackout{position:fixed; inset:0; z-index:70; background:#000; display:none}
+.blackout.is-on{display:block}
+
+/* Rotación de escenario en teléfonos en vertical */
+body.force-rotate{overflow:hidden}
+/* el deck conserva las dimensiones del escenario (1280×720) y se gira completo */
+body.force-rotate .deck{
+  position:fixed; top:50%; left:50%; width:1280px; height:720px;
+  margin-left:-640px; margin-top:-360px;
+  transform:rotate(90deg) scale(var(--rscale,1)); transform-origin:center center;
+  background:none;
+}
+body.force-rotate .slide,
+body.force-rotate .slide.is-active,
+body.force-rotate .slide.is-prev{
+  left:0; top:0; margin-left:0; margin-top:0;
+  transform:translate3d(0,0,0) scale(1);
+}
+/* las herramientas salen del contenedor girado y se anclan a la pantalla */
+body.force-rotate .ui-top{
+  position:fixed; top:auto; bottom:0; left:0; right:0; width:100%;
+  transform:none; padding:6px 10px; flex-direction:row-reverse;
+  background:linear-gradient(0deg,rgba(8,7,6,.92),transparent);
+}
+body.force-rotate .ui-brand{display:none}
+body.force-rotate .ui-bottom{
+  position:fixed; top:8px; bottom:auto; left:0; right:0; width:100%;
+  transform:none; padding:0 12px; flex-direction:row;
+}
+body.force-rotate .ui-bottom .sec{display:block; font-size:9px}
+body.force-rotate .arrow{display:none}
+body.force-rotate .panel{
+  position:fixed; top:0; right:0; bottom:0; left:auto; width:min(420px,92vw);
+  height:100%; transform:translateX(102%); border-left:1px solid rgba(239,231,218,.14);
+}
+body.force-rotate .panel.is-open{transform:none}
+body.force-rotate .hint{display:none}
+body.force-rotate .ov{position:fixed; inset:0; width:auto; height:auto}
+body.force-rotate .lb{position:fixed; inset:0}
+.rotate-tip{display:none}
+body.force-rotate .rotate-tip{
+  display:flex; position:fixed; left:50%; bottom:52px; transform:translateX(-50%);
+  z-index:45; align-items:center; gap:7px; font-size:9px; letter-spacing:.1em;
+  text-transform:uppercase; color:rgba(239,231,218,.38); pointer-events:none;
+  transition:opacity .6s; white-space:nowrap;
+}
+.rotate-tip svg{width:13px; height:13px; animation:tilt 2.6s ease-in-out infinite}
+@keyframes tilt{0%,100%{transform:rotate(0)}50%{transform:rotate(90deg)}}
+.rotate-tip.is-hidden{opacity:0}
+
+/* Impresión / PDF */
+@media print{
+  @page{size:1280px 720px; margin:0}
+  html,body{overflow:visible; background:#fff; height:auto}
+  .deck{position:static; background:#fff; display:block; overflow:visible}
+  .slide{
+    position:relative; left:auto; top:auto; margin:0; width:1280px; height:720px;
+    transform:none !important; opacity:1 !important; visibility:visible !important;
+    pointer-events:auto; box-shadow:none; break-after:page; page-break-after:always;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .slide:last-of-type{break-after:auto; page-break-after:auto}
+  .ui,.hint,.arrow,.panel,.lb,.ov{display:none !important}
+  .notes{display:none !important}
+  .sbody{overflow:visible}
+}
+.notes{display:none}
+</style>
+</head>
+<body>
+
+<!-- ============ CONTROLES ============ -->
+<div class="ui ui-top">
+  <div class="ui-brand">
+    <span class="mark">AFV</span>
+    <span><b>Huellas que vencieron el fuego</b><br>Sustentación · 2026</span>
+  </div>
+  <div class="tools">
+    <button class="tool" id="t-index" title="Índice de diapositivas (O)" aria-label="Índice de diapositivas">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="3.5" width="7" height="7"/><rect x="13.5" y="3.5" width="7" height="7"/><rect x="3.5" y="13.5" width="7" height="7"/><rect x="13.5" y="13.5" width="7" height="7"/></svg>
+    </button>
+    <button class="tool" id="t-notes" title="Guion del expositor (N)" aria-label="Guion del expositor">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4.5h14v15H5z"/><path d="M8.5 9h7M8.5 12.5h7M8.5 16h4"/></svg>
+    </button>
+    <button class="tool" id="t-timer" title="Cronómetro (T)" aria-label="Cronómetro">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 1.6M9.5 3.5h5"/></svg>
+    </button>
+    <button class="tool" id="t-presenter" title="Vista de presentador: reloj, notas y diapositiva siguiente (V)" aria-label="Vista de presentador">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="4" width="13" height="10"/><path d="M6.5 18h5M9 14v4"/><path d="M17.5 8.5H21v11h-8v-3"/></svg>
+    </button>
+    <button class="tool" id="t-print" title="Imprimir o guardar PDF (P)" aria-label="Imprimir o guardar PDF">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 9V3.5h10V9"/><rect x="4" y="9" width="16" height="7"/><path d="M7 14h10v6.5H7z"/></svg>
+    </button>
+    <button class="tool" id="t-full" title="Pantalla completa (F)" aria-label="Pantalla completa">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 9V4h5M20 15v5h-5M20 9V4h-5M4 15v5h5"/></svg>
+    </button>
+    <button class="tool" id="t-help" title="Atajos y ayuda (?)" aria-label="Ayuda">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1.1.9-1.1 1.7v.4"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></svg>
+    </button>
+  </div>
+</div>
+
+<button class="arrow prev" id="a-prev" aria-label="Diapositiva anterior">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 12H5M11 6l-6 6 6 6"/></svg>
+</button>
+<button class="arrow next" id="a-next" aria-label="Diapositiva siguiente">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+</button>
+
+<div class="ui ui-bottom">
+  <span class="ctr" id="u-count">01 / 40</span>
+  <span class="bar"><i id="u-bar"></i></span>
+  <span class="sec" id="u-sec">Portada</span>
+  <span class="ctr" id="u-clock" hidden></span>
+</div>
+
+<div class="hint" id="hint"><span>← → para navegar</span><span>·</span><span>O índice</span><span>·</span><span>N guion</span></div>
+<div class="rotate-tip" id="rotate-tip" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10.5 19h3"/></svg>
+  <span>Gira tu teléfono o desliza con el dedo</span>
+</div>
+
+<div class="deck" id="deck">
+
+<!-- ================= 01 · PORTADA ================= -->
+<section class="slide" data-theme="dark" data-title="Portada" data-group="Apertura" data-min="0.3">
+  <div class="pad cover">
+    <hr class="rule">
+    <div class="portrait">
+      <div class="frame"><img src="assets/img/retrato.webp" alt="Retrato de Arcenio Fernández Vega con traje oscuro y corbata."></div>
+      <p class="cap">Arcenio Fernández Vega (1889–1974). Archivo de Ana Joaquina Fernández Salcedo. Restauración con Meta AI.</p>
+    </div>
+    <div class="content">
+      <p class="uni">Pontificia Universidad Javeriana · Ciencia de la Información, Bibliotecología y Archivística</p>
+      <h1>Huellas que<br><em>vencieron el fuego</em></h1>
+      <p class="sub">Recuperación de información sobre la trayectoria e incidencia pública de <b>Arcenio Fernández Vega</b>: aportes a la memoria histórica de Támara y Trinidad, Casanare.</p>
+      <div class="grid" style="grid-template-columns:repeat(4,1fr); gap:10px; margin-top:26px; max-width:672px">
+        <div class="kpi" style="padding:10px 12px"><b style="font-size:24px">1889</b><span style="margin-top:2px; font-size:9.6px">Nacimiento probable · Támara</span></div>
+        <div class="kpi" style="padding:10px 12px"><b style="font-size:24px">17</b><span style="margin-top:2px; font-size:9.6px">Registros de archivo</span></div>
+        <div class="kpi" style="padding:10px 12px"><b style="font-size:24px">5</b><span style="margin-top:2px; font-size:9.6px">Testimonios orales</span></div>
+        <div class="kpi" style="padding:10px 12px"><b style="font-size:24px">1974</b><span style="margin-top:2px; font-size:9.6px">Fallecimiento · El Triunfo</span></div>
+      </div>
+      <p style="margin:22px 0 0; font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:rgba(239,231,218,.4)">Sustentación pública · usa ← → para navegar · O índice · N guion del expositor</p>
+      <div class="meta">
+        <div><span>Autora</span><b>Daisy Johana Fernández Girón</b></div>
+        <div><span>Director</span><b>Alfredo Luis Menéndez Echavarría</b></div>
+        <div><span>Año</span><b>2026 · Bogotá</b></div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Apertura</h3>
+    <ul>
+      <li>Saludo, presentación personal y del director de trabajo de grado.</li>
+      <li>Anunciar el título y la regla de la presentación: todo lo que se verá proviene del documento de grado y sus anexos.</li>
+      <li>Adelantar el hilo: un hombre público sin expediente, reconstruido con archivo y memoria oral.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No anticipar las conclusiones antes de presentar la pregunta y el método. Aclarar que las fotografías familiares fueron restauradas con Meta AI, tal como consta en el documento.</p>
+  </div>
+</section>
+
+<!-- ================= 02 · RUTA ================= -->
+<section class="slide" data-theme="paper" data-title="Ruta de la sustentación" data-group="Apertura" data-min="0.5">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Apertura · Recorrido</p>
+      <h2>Doce pasos, una sola pregunta</h2>
+    </div>
+    <div class="sbody">
+      <div class="sgap" style="gap:12px">
+        <div class="grid g3" style="gap:8px">
+          <div class="card" style="padding:10px 12px; gap:3px"><span class="num">01 · 1 min</span><h3>El problema</h3><p>Un hombre público sin expediente.</p></div>
+          <div class="card" style="padding:10px 12px; gap:3px"><span class="num">02 · 2 min</span><h3>Pregunta y objetivos</h3><p>Qué se propuso recuperar y por qué.</p></div>
+          <div class="card" style="padding:10px 12px; gap:3px"><span class="num">03 · 1 min</span><h3>Justificación</h3><p>Cuatro razones, un aporte a CIBAR.</p></div>
+          <div class="card" style="padding:10px 12px; gap:3px"><span class="num">04 · 2 min</span><h3>Marco metodológico</h3><p>Caso histórico-biográfico y triangulación.</p></div>
+          <div class="card" style="padding:10px 12px; gap:3px"><span class="num">05 · 2 min</span><h3>El corpus</h3><p>17 registros con código propio.</p></div>
+          <div class="card" style="padding:10px 12px; gap:3px"><span class="num">06 · 4 min</span><h3>Trayectoria</h3><p>Doce estaciones y su nivel de evidencia.</p></div>
+          <div class="card" style="padding:10px 12px; gap:3px"><span class="num">07 · 2 min</span><h3>Trinidad, 1953</h3><p>El documento que sobrevivió al fuego.</p></div>
+          <div class="card" style="padding:10px 12px; gap:3px"><span class="num">08 · 2 min</span><h3>Triangulación</h3><p>Coincidencias, divergencias y vacíos.</p></div>
+          <div class="card" style="padding:10px 12px; gap:3px"><span class="num">09 · 1 min</span><h3>Rutas frustradas</h3><p>La ausencia documental como dato.</p></div>
+          <div class="card" style="padding:10px 12px; gap:3px"><span class="num">10 · 2 min</span><h3>Conclusiones</h3><p>Lo que se sostiene y lo que no.</p></div>
+          <div class="card" style="padding:10px 12px; gap:3px"><span class="num">11 · 1 min</span><h3>Recomendaciones</h3><p>Cuatro frentes y una agenda.</p></div>
+          <div class="card" style="padding:10px 12px; gap:3px"><span class="num">12 · 1 min</span><h3>Cierre y fuentes</h3><p>Ficha, agradecimientos y preguntas.</p></div>
+        </div>
+        <p class="src" style="margin:0">Duración estimada: 21–23 minutos · Navegación con las flechas ← → · Tecla <b>O</b> para saltar a cualquier diapositiva · Tecla <b>N</b> para abrir este guion.</p>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Presentar la ruta completa en 30 segundos: problema, método, corpus, hallazgos, límites.</li>
+      <li>Anunciar que la presentación distingue visualmente lo documentado de lo que sigue siendo memoria oral o hipótesis.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 03 · DIVISOR ================= -->
+<section class="slide" data-theme="fire" data-title="Bloque 1 · Problema y propósito" data-group="Apertura" data-min="0.2">
+  <div class="pad">
+    <hr class="rule">
+    <div class="sbody">
+      <div class="divider">
+        <span class="kicker">Bloque uno</span>
+        <div class="big">01</div>
+        <h2>El problema y el propósito</h2>
+        <p>Qué se perdió, qué pregunta ordena la investigación y qué se propuso recuperar.</p>
+        <div class="evs" style="margin-top:14px">
+          <span class="ev ev--doc">04 · Un hombre público sin expediente</span>
+          <span class="ev ev--doc">05 · La pregunta orientadora</span>
+          <span class="ev ev--doc">06 · Objetivos</span>
+          <span class="ev ev--doc">07 · Justificación</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <ul><li>Transición breve: pasar del recorrido general al caso.</li></ul>
+  </div>
+</section>
+
+<!-- ================= 04 · EL PROBLEMA ================= -->
+<section class="slide" data-theme="dark" data-title="Un hombre público sin expediente" data-group="Problema" data-min="1.0">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Planteamiento del problema</p>
+      <h2>Un hombre público sin expediente</h2>
+      <p class="lead">Arcenio Fernández Vega fue comerciante, mediador social y alcalde en Támara y Trinidad. Su rastro institucional, en cambio, casi no existe: los papeles que debían probarlo se perdieron, se dispersaron o se quemaron.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g3">
+          <div class="card card--accent">
+            <span class="num">Lo que se perdió</span>
+            <h3>Tres pérdidas, un mismo efecto</h3>
+            <p>La incineración total de los archivos de la Registraduría Municipal de Támara durante una toma guerrillera en los años noventa; los incendios del casco urbano de Trinidad a mediados del siglo XX; y la falta de conservación sistemática de hemerotecas y gacetas oficiales.</p>
+          </div>
+          <div class="card">
+            <span class="num">Lo que eso produce</span>
+            <h3>Invisibilización</h3>
+            <p>Sin soporte documental, la trayectoria de un líder local queda relegada al olvido, a la especulación o a narrativas incompletas. Se abre un vacío en la historiografía regional de Casanare que impide comprender también las dinámicas administrativas del oriente colombiano.</p>
+          </div>
+          <div class="card">
+            <span class="num">Lo que sobrevivió</span>
+            <h3>Archivos afectivos y memoria viva</h3>
+            <p>Un fondo fotográfico familiar, tres registros parroquiales, un manuscrito autógrafo, recortes de prensa e historiografía local —más cinco testimonios en profundidad— sostienen esta reconstrucción. La archivística, aquí, trabaja con fragmentos.</p>
+          </div>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><b>1889</b><span>Año probable de nacimiento · Támara</span></div>
+          <div class="kpi"><b>1974</b><span>Fallecimiento · finca El Triunfo</span></div>
+          <div class="kpi"><b>5</b><span>Testimonios orales en profundidad</span></div>
+          <div class="kpi"><b>17</b><span>Registros de archivo con código propio</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Partir del caso concreto: comerciante, mediador y alcalde en dos municipios de Casanare.</li>
+      <li>Nombrar las tres pérdidas documentales y su efecto común: la invisibilización del personaje y de la historia administrativa local.</li>
+      <li>Subrayar que la investigación no parte de la nada: hay archivos familiares, parroquiales y prensa.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No afirmar que «no existe ningún documento» sobre él: existen partidas, prensa, manuscrito y fotografías. No atribuir la quema de archivos a un actor específico más allá de lo que dice el documento.</p>
+  </div>
+</section>
+
+<!-- ================= 05 · PREGUNTA ================= -->
+<section class="slide" data-theme="paper" data-title="La pregunta orientadora" data-group="Problema" data-min="0.6">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Pregunta orientadora de la investigación</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap" style="gap:20px">
+        <blockquote class="blockquote" style="font-size:30px; max-width:34ch">¿Cómo recuperar la trayectoria de Arcenio Fernández Vega entre 1889 y 1974, para contribuir a la memoria histórica de personajes que tienen incidencia pública en Támara y Trinidad, Casanare (Colombia)?</blockquote>
+        <hr class="hr">
+        <div class="grid g2" style="gap:26px">
+          <div>
+            <p class="eyebrow" style="color:#8A4A1E">Por qué importa más allá de una familia</p>
+            <p style="font-size:13.6px; line-height:1.6; margin:0; color:rgba(27,22,17,.78)">La investigación se inscribe en la Ciencia de la Información, Bibliotecología y Archivística (CIBAR) y parte de una constatación: los archivos son también un territorio en disputa. Los procesos institucionales deciden qué documentos se conservan, cuáles se descartan y qué perspectivas entran al registro histórico.</p>
+            <p style="font-size:13.6px; line-height:1.6; margin:10px 0 0; color:rgba(27,22,17,.78)">En territorios periféricos golpeados por la violencia, donde el Estado perdió sus propios soportes burocráticos, la memoria oral de los descendientes y la custodia afectiva de los archivos familiares se vuelven los únicos refugios posibles.</p>
+          </div>
+          <div>
+            <p class="eyebrow" style="color:#8A4A1E">El punto de partida epistemológico</p>
+            <p style="font-family:var(--serif); font-size:17px; line-height:1.5; margin:0; font-style:italic; color:rgba(27,22,17,.86)">«Con el testimonio se abre un proceso epistemológico que parte de la memoria declarada, pasa por el archivo y los documentos, y termina en la prueba documental».</p>
+            <p class="src" style="margin-top:10px">Ricoeur (2000), como se cita en Jiménez Pérez (2021, p. 7) · epígrafe del marco teórico</p>
+          </div>
+        </div>
+        <div class="grid g3" style="gap:10px">
+          <div class="card" style="padding:10px 13px"><span class="num">Memoria declarada</span><p style="font-size:11.8px; line-height:1.45">Los testimonios dicen lo que la familia recuerda; no es todavía prueba.</p></div>
+          <div class="card" style="padding:10px 13px"><span class="num">Archivo y documentos</span><p style="font-size:11.8px; line-height:1.45">Las partidas, la prensa y el manuscrito permiten verificar, corregir y fechar.</p></div>
+          <div class="card" style="padding:10px 13px"><span class="num">Prueba documental</span><p style="font-size:11.8px; line-height:1.45">Solo lo que resiste el cruce se afirma; lo demás se declara como hipótesis.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Leer la pregunta tal como fue formulada: no se puede ampliar ni reducir.</li>
+      <li>Explicar el giro epistemológico: de la memoria declarada al archivo y de allí a la prueba documental.</li>
+      <li>Vincular con CIBAR: los archivos como territorio en disputa y la periferia como caso extremo.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 06 · OBJETIVOS ================= -->
+<section class="slide" data-theme="dark" data-title="Objetivo general y objetivos específicos" data-group="Problema" data-min="0.8">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Objetivos</p>
+      <h2>Un objetivo general, tres movimientos</h2>
+      <p class="lead">El objetivo general se descompone en tres objetivos específicos que la investigación resolvió en tres fases. Cada uno corresponde a un apartado del capítulo de resultados.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="card card--accent" style="padding:14px 18px">
+          <span class="num">Objetivo general</span>
+          <p style="font-size:14.6px; line-height:1.5; color:rgba(239,231,218,.9)">Recuperar información sobre la trayectoria de Arcenio Fernández Vega entre 1889 y 1974, a partir de fuentes orales y documentales, con el propósito de contribuir a la memoria histórica de su incidencia pública en Támara y Trinidad, Casanare (Colombia).</p>
+        </div>
+        <div class="grid g3">
+          <div class="card">
+            <span class="num">OE 01 · Identificar</span>
+            <h3>Identificar fuentes</h3>
+            <p>Reconocer archivos, bibliotecas, registros e instituciones que podían custodiar información pertinente, así como a las personas que pudieron aportar testimonio.</p>
+            <p class="code" style="margin-top:auto">→ Resultados 7.1 · El corpus</p>
+          </div>
+          <div class="card">
+            <span class="num">OE 02 · Recopilar</span>
+            <h3>Recopilar testimonios y acervos</h3>
+            <p>Entrevistas a cuatro hijos y a un testigo externo; visitas a parroquias de Támara, Trinidad y San Luis de Palenque; consulta al Archivo Histórico de Boyacá; seis jornadas en la hemeroteca de la Biblioteca Luis Ángel Arango.</p>
+            <p class="code" style="margin-top:auto">→ Resultados 7.1 y 7.2</p>
+          </div>
+          <div class="card">
+            <span class="num">OE 03 · Analizar</span>
+            <h3>Dar cuenta de su contribución</h3>
+            <p>Analizar la información recuperada para establecer su incidencia pública y distinguir con claridad lo que las fuentes sostienen de lo que permanece en el terreno de la hipótesis.</p>
+            <p class="code" style="margin-top:auto">→ Resultados 7.2 y 7.3</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Leer el objetivo general sin ampliarlo ni recortarlo.</li>
+      <li>Mostrar la correspondencia objetivo → fase → apartado de resultados; eso explica el orden del capítulo 7.</li>
+      <li>Destacar que el tercer objetivo incluye un deber metodológico: distinguir lo probado de lo hipotético.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 07 · JUSTIFICACIÓN ================= -->
+<section class="slide" data-theme="paper" data-title="Justificación en cuatro razones" data-group="Problema" data-min="0.5">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Justificación</p>
+      <h2>Cuatro razones para buscar lo que falta</h2>
+      <p class="lead">La pertinencia del trabajo se sostiene en cuatro argumentos que articulan memoria, disciplina, sociedad y viabilidad.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g4">
+          <div class="card">
+            <span class="num">01 · Memoria histórica</span>
+            <h3>Recuperar las fuentes</h3>
+            <p>Reunir los soportes documentales y testimoniales sobre la trayectoria personal, familiar e institucional del personaje.</p>
+          </div>
+          <div class="card">
+            <span class="num">02 · Aporte a CIBAR</span>
+            <h3>Poner la archivística a prueba</h3>
+            <p>Aplicar conocimientos archivísticos a la recuperación de archivos personales, institucionales y relatos orales.</p>
+          </div>
+          <div class="card">
+            <span class="num">03 · Relevancia social</span>
+            <h3>Visibilizar una trayectoria</h3>
+            <p>Contribuir a preservar la memoria histórica de Támara y Trinidad y de los personajes que incidieron en su vida pública.</p>
+          </div>
+          <div class="card">
+            <span class="num">04 · Viabilidad</span>
+            <h3>Integrar lo disperso</h3>
+            <p>Articular documentos fragmentados y testimonios familiares para reconstruir una historia que ninguna de esas fuentes, por separado, podría sostener.</p>
+          </div>
+        </div>
+        <div class="note" style="font-size:13px"><b>El argumento de fondo:</b> en la periferia, donde el Estado perdió sus soportes, el archivo familiar y la memoria oral no son un complemento pintoresco; son la infraestructura probatoria disponible.</div>
+        <div class="grid g2" style="gap:14px">
+          <div class="card" style="padding:12px 15px"><span class="num">Qué aporta a la disciplina</span><p style="font-size:12.6px; line-height:1.5">El trabajo no se limita a narrar una biografía: propone un procedimiento replicable de recuperación de información —identificar, recopilar, contrastar— aplicable a otros personajes locales sin expediente.</p></div>
+          <div class="card" style="padding:12px 15px"><span class="num">Qué aporta al territorio</span><p style="font-size:12.6px; line-height:1.5">Devuelve a Támara y Trinidad un acervo sistematizado y digitalizado que puede integrarse a sus bibliotecas y archivos, y ofrece un modelo para sus propias Salas de Memoria Local.</p></div>
+        </div>
+        <div class="evs">
+          <span class="ev ev--doc">Documento de grado · justificación</span>
+          <span class="ev ev--cor">Articulación con objetivos específicos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Recorrer las cuatro razones en orden y detenerse en el aporte a CIBAR.</li>
+      <li>Cerrar con la idea de viabilidad: el valor está en integrar fuentes dispersas.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 08 · DIVISOR ================= -->
+<section class="slide" data-theme="fire" data-title="Bloque 2 · Método y corpus" data-group="Método" data-min="0.2">
+  <div class="pad">
+    <hr class="rule">
+    <div class="sbody">
+      <div class="divider">
+        <span class="kicker">Bloque dos</span>
+        <div class="big">02</div>
+        <h2>Cómo se buscó</h2>
+        <p>Diseño metodológico, triangulación de cinco tipos de fuente y el corpus de diecisiete registros que sostiene la reconstrucción.</p>
+        <div class="evs" style="margin-top:14px">
+          <span class="ev ev--doc">09 · Diseño metodológico</span>
+          <span class="ev ev--doc">10 · Tres fases de campo</span>
+          <span class="ev ev--doc">11 · El corpus</span>
+          <span class="ev ev--doc">12 · Las fuentes, a la vista</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes"><ul><li>Transición: del problema al dispositivo metodológico.</li></ul></div>
+</section>
+
+<!-- ================= 09 · DISEÑO ================= -->
+<section class="slide" data-theme="dark" data-title="Diseño metodológico" data-group="Método" data-min="1.0">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Marco metodológico</p>
+      <h2>Un caso, cinco tipos de fuente, una triangulación</h2>
+      <p class="lead">El método no fue un protocolo previo: fue la respuesta a un archivo que no existía en un solo lugar.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap" style="gap:12px">
+        <div class="grid g4" style="gap:10px">
+          <div class="card"><span class="num">Enfoque</span><h3>Cualitativo</h3><p>Estudio del mundo empírico en su entorno natural (Godoy, 1995); interés por la vida de las personas y sus perspectivas situadas (Vasilachis de Gialdino, 2006).</p></div>
+          <div class="card"><span class="num">Tipo</span><h3>Documental e histórica</h3><p>Búsqueda, recuperación, análisis y crítica de fuentes (Arias, 2012); comprensión de los procesos en su desarrollo temporal (Bloch, 2001; Le Goff, 1991).</p></div>
+          <div class="card"><span class="num">Alcance</span><h3>Descriptivo</h3><p>Comprensión del fenómeno en su totalidad y complejidad: documentos, narraciones, fotografías y manuscritos (Godoy, 1995).</p></div>
+          <div class="card"><span class="num">Diseño</span><h3>Caso histórico-biográfico</h3><p>Un caso delimitado temporalmente y reconstruido como trayectoria vital (Yin, 1994; Petrina, 2020; Bolívar Botía, 2002).</p></div>
+        </div>
+        <div class="grid g21" style="gap:14px">
+          <div>
+            <p class="eyebrow" style="margin-bottom:8px">El modelo de triangulación</p>
+            <p style="margin:0 0 10px; font-size:13.2px; line-height:1.55; color:rgba(239,231,218,.78)">Ninguna fuente, por sí sola, sostiene una vida. Se articularon cinco conjuntos de fuentes: los archivos funcionan como ancla de evidencia y validación; las fuentes orales llenan los vacíos que la documentación oficial omitió o perdió. El cruce entre ambas es lo que permite distinguir un dato de una versión.</p>
+            <div class="evs" style="margin-top:0">
+              <span class="tag tag--doc">Orales · 5</span>
+              <span class="tag tag--doc">Eclesiásticas · 3</span>
+              <span class="tag">Archivo familiar · 3</span>
+              <span class="tag">Hemerográficas · 2</span>
+              <span class="tag">Historiografía · 2</span>
+            </div>
+            <p style="margin:12px 0 0; font-size:12px; line-height:1.5; color:rgba(239,231,218,.6)"><b style="color:var(--paper)">Métodos:</b> documental · historia oral · biográfico.<br><b style="color:var(--paper)">Instrumentos:</b> fichas de registro con código, matriz de recuperación histórica, bitácora de campo y matriz de triangulación crítica.</p>
+            <div class="note" style="margin-top:12px; font-size:12px"><b>La regla del cruce:</b> ninguna fuente se descarta y ninguna se acepta sola. Cuando el documento y el testimonio coinciden, hay dato; cuando discrepan, hay una pregunta nueva.</div>
+          </div>
+          <div class="card" style="justify-content:center">
+            <span class="num">Ética</span>
+            <ul class="clean" style="gap:6px">
+              <li>Participación con aceptación verbal y escrita; entrevistas grabadas con autorización.</li>
+              <li>Nombres reales de las personas entrevistadas, con su consentimiento.</li>
+              <li>Tratamiento conforme a la Ley 1581 de 2012 y a los lineamientos de la Universidad.</li>
+              <li>Declaración del uso de herramientas de IA como apoyo de redacción y organización de ideas.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Enfoque cualitativo, tipo documental e histórico, alcance descriptivo, diseño de caso histórico-biográfico.</li>
+      <li>Explicar la triangulación: cinco conjuntos de fuentes que se corrigen entre sí; el archivo ancla, la oralidad rellena.</li>
+      <li>Mencionar los instrumentos: fichas con código, matriz de recuperación, bitácora y matriz de triangulación.</li>
+      <li>Consideraciones éticas: consentimiento escrito, nombres autorizados, Ley 1581 de 2012 y declaración de apoyo con IA.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No decir que se trata de una muestra representativa: es un estudio de caso simple. No omitir la declaración del uso de IA en redacción.</p>
+  </div>
+</section>
+
+<!-- ================= 10 · FASES ================= -->
+<section class="slide" data-theme="paper" data-title="Trabajo de campo: tres fases" data-group="Método" data-min="0.7">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Trabajo de campo</p>
+      <h2>Tres fases y un recorrido verificable</h2>
+      <p class="lead">Cada fase dejó rastro: entrevistas, visitas y jornadas de hemeroteca que pueden rastrearse en la bitácora y en los registros del corpus.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="tl" style="margin-bottom:6px">
+          <div class="st">
+            <span class="dot"></span>
+            <span class="yr">FASE 1 · Identificación de fuentes</span>
+            <span class="tt">Dónde podía estar</span>
+            <span class="tx">Reconocimiento de familiares y conocidos; de posibles fuentes documentales sobre vínculos familiares, comercio y administración pública; y de archivos, bibliotecas y registros que podían custodiar información.</span>
+          </div>
+          <div class="st">
+            <span class="dot"></span>
+            <span class="yr">FASE 2 · Recopilación</span>
+            <span class="tt">Qué se recogió</span>
+            <span class="tx">Cinco entrevistas; visitas a Trinidad y a la iglesia de San Luis de Palenque; dos visitas a Támara (iglesia y Registraduría); consulta al Archivo Histórico de Boyacá; seis visitas a la hemeroteca de la Biblioteca Luis Ángel Arango.</span>
+          </div>
+          <div class="st">
+            <span class="dot"></span>
+            <span class="yr">FASE 3 · Análisis</span>
+            <span class="tt">Cómo se cruzó</span>
+            <span class="tx">Organización temática, clasificación por periodos y lugares, sistematización en la matriz de recuperación histórica y contraste de testimonios con registros para identificar coincidencias, diferencias y vacíos.</span>
+          </div>
+        </div>
+        <div class="card" style="padding:14px 16px">
+          <span class="num">Participantes del estudio</span>
+          <p style="font-size:13.4px; line-height:1.55; color:rgba(27,22,17,.82)">Cuatro hijos de Arcenio Fernández Vega —<b>Janet Arturo «Janito»</b>, <b>Herminsul Joaquín</b>, <b>Bladimir</b> y <b>Ana Joaquina Fernández Salcedo</b>— y un testigo externo, <b>Pedro Aníbal Rivera Montoya</b> (87 años), oriundo de Paz de Ariporo y residente en Yopal, que lo conoció en su vejez.</p>
+          <p style="margin:6px 0 0; font-size:12.4px; line-height:1.5; color:rgba(27,22,17,.66)">La articulación de la mirada intrafamiliar con una mirada comunitaria externa es lo que permite contrastar versiones, no solo acumular recuerdos.</p>
+        </div>
+        <div class="grid g4" style="gap:9px">
+          <div class="card" style="padding:10px 12px"><span class="num">Instrumento 1</span><h3 style="font-size:13px">Ficha de registro documental</h3><p style="font-size:11.4px; line-height:1.4">Cada fuente se describe con su código, su soporte, su ubicación y la nota de fuente original.</p></div>
+          <div class="card" style="padding:10px 12px"><span class="num">Instrumento 2</span><h3 style="font-size:13px">Matriz de recuperación histórica</h3><p style="font-size:11.4px; line-height:1.4">Clasificación temática y cronológica de todo lo recogido, por periodos y lugares.</p></div>
+          <div class="card" style="padding:10px 12px"><span class="num">Instrumento 3</span><h3 style="font-size:13px">Bitácora de campo</h3><p style="font-size:11.4px; line-height:1.4">Registro de visitas, fechas, instituciones y respuestas obtenidas.</p></div>
+          <div class="card" style="padding:10px 12px"><span class="num">Instrumento 4</span><h3 style="font-size:13px">Matriz de triangulación</h3><p style="font-size:11.4px; line-height:1.4">Contraste de testimonios entre sí y con los documentos: coincidencias, divergencias y vacíos.</p></div>
+        </div>
+        <div class="note" style="font-size:12.2px"><b>Distancia recorrida:</b> Támara y Trinidad (Casanare), San Luis de Palenque, Tunja (Archivo Histórico de Boyacá) y Bogotá (Hemeroteca de la Biblioteca Luis Ángel Arango). Cinco escenarios, seis jornadas de hemeroteca y cuatro entrevistas presenciales en julio de 2026.</div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Recorrer las tres fases con sus actividades concretas: son la prueba de que el trabajo de campo existió.</li>
+      <li>Nombrar a los participantes y explicar por qué importa el testigo externo: contrasta la versión de los hijos.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 11 · CORPUS ================= -->
+<section class="slide" data-theme="dark" data-title="El corpus: diecisiete registros" data-group="Método" data-min="1.0">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Resultados 7.1 · El cuarto de archivo</p>
+      <h2>Lo que quedó del naufragio</h2>
+      <p class="lead">Diecisiete registros con código propio sostienen la reconstrucción. Los códigos no son un adorno: son el sistema que permitió citar y cruzar cada dato del capítulo de resultados.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap" style="gap:12px">
+        <div class="table-wrap" style="flex:1; min-height:0">
+          <table class="table table--dense">
+            <thead>
+              <tr><th style="width:74px">Código</th><th style="width:150px">Tipo</th><th>Registro</th><th style="width:210px">Dato que aporta</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="code">T001–T005</span></td><td>Oral</td><td>Cuatro hijos y un testigo externo</td><td>Biografía, vida cotidiana, ética y memoria comunitaria</td></tr>
+              <tr><td><span class="code">PB001</span></td><td>Eclesiástico</td><td>Bautismo de Ana Joaquina Fernández Vega (1881)</td><td>Padres, abuelos y filiación legítima</td></tr>
+              <tr><td><span class="code">PM001</span></td><td>Eclesiástico</td><td>Matrimonio Latriglia–Fernández (1898)</td><td>Tutela familiar y edad aproximada de Arcenio</td></tr>
+              <tr><td><span class="code">PM002</span></td><td>Eclesiástico</td><td>Matrimonio Fernández Vega–Salcedo (1965)</td><td>Nacimiento en 1889, viudez y segundo hogar</td></tr>
+              <tr><td><span class="code">F001–F002</span></td><td>Archivo familiar</td><td>Fondo fotográfico y manuscrito autógrafo</td><td>Rasgos, escenarios y el único escrito de su puño y letra</td></tr>
+              <tr><td><span class="code">NP001–NP002</span></td><td>Hemerográfico</td><td>El Tiempo (1954) y álbum de recortes</td><td>Comisión por la reconstrucción de Trinidad</td></tr>
+              <tr><td><span class="code">L001–L002</span></td><td>Historiografía</td><td>Benítez Ortiz (2010) y Franco García (2024)</td><td>Contexto local y venta del Hato Barreto</td></tr>
+              <tr><td><span class="code">R001–R002</span></td><td>Institucional</td><td>Registradurías de Támara y Trinidad</td><td>La ausencia documental, nombrada y fechada</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="grid g3" style="gap:10px">
+          <div class="card card--flat" style="border:1px solid var(--rule); padding:10px 12px"><span class="num">17 registros</span><p style="font-size:12px">5 orales · 3 eclesiásticos · 3 del archivo familiar · 2 hemerográficos · 2 historiográficos · 2 institucionales.</p></div>
+          <div class="card card--flat" style="border:1px solid var(--rule); padding:10px 12px"><span class="num">Columna vertebral</span><p style="font-size:12px">Las tres partidas parroquiales fijan la cronología: 1881, 1898 y 1965.</p></div>
+          <div class="card card--flat" style="border:1px solid var(--rule); padding:10px 12px"><span class="num">Advertencia</span><p style="font-size:12px">Hay recortes sin fecha cierta («fecha por determinar») y fotos restauradas con Meta AI: se indica en cada pie.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Recorrer el catálogo por tipologías, no registro por registro.</li>
+      <li>Detenerse en los tres registros parroquiales: son la columna vertebral cronológica.</li>
+      <li>Subrayar el manuscrito autógrafo: el único escrito de su puño y letra que se encontró.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No presentar los recortes sin fecha como si tuvieran fecha cierta. Indicar la restauración con Meta AI de varias fotografías, tal como consta en el documento.</p>
+  </div>
+</section>
+
+<!-- ================= 12 · EVIDENCIAS EN IMAGEN ================= -->
+<section class="slide" data-theme="paper" data-title="Las fuentes, a la vista" data-group="Método" data-min="1.0">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">El corpus, en imágenes</p>
+      <h2>Tres documentos que anclan la cronología</h2>
+      <p class="lead">Cada pie conserva la nota de fuente del documento de grado. Toca una imagen para ampliarla.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g3" style="gap:14px; align-items:stretch">
+          <figure class="fig fig--paper" style="margin:0; --figh:300px">
+            <img src="assets/img/bautismo.webp" alt="Partida de bautismo de Ana Joaquina Fernández Vega, 1881." data-lb="bautismo">
+            <figcaption class="cap"><b>PB001 · 1881</b> — Bautismo de Ana Joaquina Fernández Vega. Parroquia La Inmaculada Concepción de Támara.<br>Archivo de Daisy Johana Fernández Girón (2026).</figcaption>
+          </figure>
+          <figure class="fig fig--paper" style="margin:0; --figh:300px">
+            <img src="assets/img/matrimonio_latriglia.webp" alt="Partida de matrimonio de Víctor Latriglia y Ana Joaquina Fernández, 1898." data-lb="matrimonio_latriglia">
+            <figcaption class="cap"><b>PM001 · 1898</b> — Matrimonio de Víctor Latriglia y Ana Joaquina Fernández. Libro 4, folio 22, n.º 29; 24 de septiembre de 1898.<br>Archivo de Daisy Johana Fernández Girón (2026).</figcaption>
+          </figure>
+          <figure class="fig fig--paper" style="margin:0; --figh:300px">
+            <img src="assets/img/matrimonio_arcenio.webp" alt="Partida de matrimonio de Arcenio Fernández Vega y María Ignacia Salcedo, 1965." data-lb="matrimonio_arcenio">
+            <figcaption class="cap"><b>PM002 · 1965</b> — Matrimonio de Arcenio Fernández Vega y María Ignacia Salcedo. El Triunfo, 10 de julio de 1965; 75 y 42 años.<br>Archivo de Daisy Johana Fernández Girón (2026).</figcaption>
+          </figure>
+        </div>
+        <div class="note" style="font-size:12.4px"><b>Cómo se leen en cadena:</b> la partida de 1881 prueba quiénes eran sus padres; la de 1898 sitúa la tutela de la hermana cuando él tenía unos nueve años; la de 1965 permite deducir el año de nacimiento (1889) y documenta el segundo matrimonio.</div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Explicar la cadena probatoria: 1881 → 1898 → 1965.</li>
+      <li>Señalar que la partida de bautismo de Arcenio no existe: el año de nacimiento se deduce de la de 1965.</li>
+      <li>Invitar a ampliar una imagen si el jurado pregunta por los datos del documento.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 13 · DIVISOR ================= -->
+<section class="slide" data-theme="fire" data-title="Bloque 3 · Trayectoria" data-group="Trayectoria" data-min="0.2">
+  <div class="pad">
+    <hr class="rule">
+    <div class="sbody">
+      <div class="divider">
+        <span class="kicker">Bloque tres</span>
+        <div class="big">03</div>
+        <h2>La trayectoria reconstruida</h2>
+        <p>Trece estaciones entre 1889 y 1974, cada una marcada con su nivel de evidencia: lo que un documento prueba, lo que los testimonios corroboran y lo que sigue siendo hipótesis oral.</p>
+        <div class="evs" style="margin-top:14px">
+          <span class="ev ev--doc">14 · Panorama</span>
+          <span class="ev ev--doc">15 · Infancia y orfandad</span>
+          <span class="ev ev--doc">16 · El primer capital</span>
+          <span class="ev ev--doc">17 · Alcalde de Támara</span>
+          <span class="ev ev--doc">18 · El código ético</span>
+          <span class="ev ev--doc">19 · Los dos hogares</span>
+          <span class="ev ev--doc">20 · Trinidad, 1953</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes"><ul><li>Advertir que este es el corazón de la sustentación: aquí se ve el personaje y también el estado de la prueba.</li></ul></div>
+</section>
+
+<!-- ================= 14 · PANORAMA ================= -->
+<section class="slide" data-theme="dark" data-title="Panorama: trece estaciones" data-group="Trayectoria" data-min="0.5">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Resultados 7.2 · Reconstrucción</p>
+      <h2>De «el zute» a la palabra empeñada</h2>
+      <p class="lead">Un recorrido cronológico aproximado. Cuando el documento no permitió fijar una fecha, la estación lo indica con «c.» (hacia) o «s. f.» (sin fecha).</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap" style="gap:9px">
+        <div class="grid g4" style="gap:7px">
+          <div class="card" style="padding:8px 10px; gap:2px"><span class="num">1889</span><h3 style="font-size:13.5px">Nace en Támara</h3><p style="font-size:10.8px; line-height:1.35">Año deducido de la partida de 1965.</p></div>
+          <div class="card" style="padding:8px 10px; gap:2px"><span class="num">c. 1892–1896</span><h3 style="font-size:13.5px">La orfandad y «el zute»</h3><p style="font-size:10.8px; line-height:1.35">Unánime en los cuatro hijos.</p></div>
+          <div class="card" style="padding:8px 10px; gap:2px"><span class="num">1898</span><h3 style="font-size:13.5px">La casa de la hermana</h3><p style="font-size:10.8px; line-height:1.35">Ana Joaquina y Vitus Latriglia.</p></div>
+          <div class="card" style="padding:8px 10px; gap:2px"><span class="num">c. 1905</span><h3 style="font-size:13.5px">«El niño bonito de Támara»</h3><p style="font-size:10.8px; line-height:1.35">Elegancia y servicio al Vicariato.</p></div>
+          <div class="card" style="padding:8px 10px; gap:2px"><span class="num">c. 1905–1910</span><h3 style="font-size:13.5px">Cuatro pesos con diez centavos</h3><p style="font-size:10.8px; line-height:1.35">El primer capital independiente.</p></div>
+          <div class="card" style="padding:8px 10px; gap:2px"><span class="num">c. 1910–1935</span><h3 style="font-size:13.5px">Alcalde de Támara</h3><p style="font-size:10.8px; line-height:1.35">Obra pública con sanciones pedagógicas.</p></div>
+          <div class="card" style="padding:8px 10px; gap:2px"><span class="num">s. f.</span><h3 style="font-size:13.5px">Norberta Díaz y el Hato Barreto</h3><p style="font-size:10.8px; line-height:1.35">Primer hogar; dos hijos.</p></div>
+          <div class="card" style="padding:8px 10px; gap:2px"><span class="num">1935–1938</span><h3 style="font-size:13.5px">María Ignacia Salcedo</h3><p style="font-size:10.8px; line-height:1.35">Labranzagrande y la finca El Triunfo.</p></div>
+          <div class="card" style="padding:8px 10px; gap:2px"><span class="num">c. 1937–1948</span><h3 style="font-size:13.5px">Alcalde de Trinidad</h3><p style="font-size:10.8px; line-height:1.35">Sin decretos localizados.</p></div>
+          <div class="card" style="padding:8px 10px; gap:2px"><span class="num">Años 40–50</span><h3 style="font-size:13.5px">La Violencia bipartidista</h3><p style="font-size:10.8px; line-height:1.35">«Liberal de cuna»; Guanapalo.</p></div>
+          <div class="card" style="padding:8px 10px; gap:2px"><span class="num">1953–1954</span><h3 style="font-size:13.5px">Reconstruir Trinidad</h3><p style="font-size:10.8px; line-height:1.35">El incendio y la comisión.</p></div>
+          <div class="card" style="padding:8px 10px; gap:2px"><span class="num">1965</span><h3 style="font-size:13.5px">El matrimonio en El Triunfo</h3><p style="font-size:10.8px; line-height:1.35">10 de julio; 75 y 42 años.</p></div>
+          <div class="card" style="padding:9px 11px; gap:2px; grid-column:span 2"><span class="num">1974</span><h3 style="font-size:13.5px">La muerte y una tumba orientada al norte</h3><p style="font-size:10.8px; line-height:1.35">1 de agosto, en El Triunfo, a los 84 años.</p></div>
+        </div>
+        <div class="evs" style="margin-top:2px">
+          <span class="ev ev--doc">Documentado</span><span style="font-size:10.6px; color:rgba(239,231,218,.55); margin-right:10px">Registro de archivo, prensa o historiografía</span>
+          <span class="ev ev--cor">Corroborado</span><span style="font-size:10.6px; color:rgba(239,231,218,.55); margin-right:10px">Varios testimonios coinciden</span>
+          <span class="ev ev--oral">Memoria oral</span><span style="font-size:10.6px; color:rgba(239,231,218,.55); margin-right:10px">Solo relato</span>
+          <span class="ev ev--gap">Hipótesis / vacío</span><span style="font-size:10.6px; color:rgba(239,231,218,.55)">No fue posible confirmarlo</span>
+        </div>
+        <div class="grid g3" style="gap:10px; margin-top:4px">
+          <div class="card" style="padding:10px 13px"><span class="num">Lo mejor documentado</span><p style="font-size:11.6px; line-height:1.45">El segundo matrimonio (1965), la venta del Hato Barreto y la gestión por la reconstrucción de Trinidad.</p></div>
+          <div class="card" style="padding:10px 13px"><span class="num">Lo que solo sostiene la memoria</span><p style="font-size:11.6px; line-height:1.45">La infancia, la alcancía, el código ético y la mayoría de las anécdotas familiares.</p></div>
+          <div class="card" style="padding:10px 13px"><span class="num">Lo que sigue abierto</span><p style="font-size:11.6px; line-height:1.45">Las fechas de las alcaldías, la partida del primer matrimonio, la escolaridad y la cifra de hijos.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Mostrar el panorama completo y explicar la leyenda de niveles de evidencia antes de entrar en detalle.</li>
+      <li>Señalar los dos puntos débiles: las alcaldías sin decreto y el primer matrimonio sin partida.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">Las fechas de las alcaldías (1910–1935 y 1937–1948) son hipótesis, no datos confirmados: decirlo explícitamente. El año de nacimiento se deduce de la partida de 1965.</p>
+  </div>
+</section>
+
+<!-- ================= 15 · INFANCIA ================= -->
+<section class="slide" data-theme="paper" data-title="Infancia, orfandad y tutela" data-group="Trayectoria" data-min="0.9">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">1889 · c. 1892–1898</p>
+      <h2>El niño al que llamaron «el zute»</h2>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g12" style="gap:18px; align-items:start">
+          <figure class="fig" style="margin:0; --figh:392px">
+            <img src="assets/img/casa.webp" alt="Casa de tapia y teja en Támara donde vivió Arcenio Fernández Vega." data-lb="casa">
+            <figcaption class="cap"><b>Casa en Támara</b> de la familia Latriglia Fernández, donde Arcenio vivió su infancia y juventud. Documento de grado, anexo 2.</figcaption>
+          </figure>
+          <div style="display:flex; flex-direction:column; gap:11px">
+            <p style="margin:0; font-size:13.4px; line-height:1.55; color:rgba(27,22,17,.84)">Nació en Támara el 25 de diciembre, probablemente de 1889, hijo de <b>Sótero Fernández</b> y <b>Joaquina Vega Mojica</b>. Abuelos paternos: Damasceno Fernández y Pastora Abril; maternos: Juan José Vega y Ascensión Mojica, oriundos de Socotá (Boyacá). Su padre era uno de los contribuyentes más importantes del municipio, según la historiografía local.</p>
+            <p style="margin:0; font-size:13.4px; line-height:1.55; color:rgba(27,22,17,.84)">Perdió primero al padre y después a la madre. En el velorio, el niño llevó un cuchillo para cortar el pecho de su madre: había oído que ella se iba de viaje y creía que así seguiría recibiendo leche. Los tamareños lo llamaron <b>«el zute»</b> —como se llama a los terneros huérfanos en el Llano— y le daban monedas por compasión. Él no compraba dulces: mandó hacer una alcancía.</p>
+            <p style="margin:0; font-size:13.4px; line-height:1.55; color:rgba(27,22,17,.84)">Quedó bajo la custodia de su hermana <b>Ana Joaquina</b>, ocho años mayor, casada con el comerciante italiano <b>Vitus Antonius Latriglia Pentagna</b> —conocido en Támara como Víctor Latrilla o «el Jurungo»—. En el almacén de telas del italiano aprendió el oficio que después sería su vida.</p>
+            <div class="evs">
+              <span class="ev ev--doc">PM002 · 75 años en 1965</span>
+              <span class="ev ev--doc">PB001 · 1881</span>
+              <span class="ev ev--doc">PM001 · 1898</span>
+              <span class="ev ev--oral">Fecha de cumpleaños</span>
+              <span class="ev ev--gap">Edad exacta: 7 frente a 4–5 años</span>
+            </div>
+          </div>
+        </div>
+        <div class="note" style="font-size:12.4px"><b>Vacío declarado:</b> no se localizó la partida de bautismo de Arcenio. El año de nacimiento se deduce de la partida de matrimonio de 1965, donde declara 75 años; el 25 de diciembre proviene de la memoria oral.</div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Contar la orfandad con cuidado: es el núcleo que los cuatro hijos repiten y el origen del apodo.</li>
+      <li>Explicar el valor probatorio de la partida de 1898: permite calcular que tenía unos nueve años cuando quedó bajo tutela.</li>
+      <li>Declarar el vacío: la partida de bautismo directa no aparece.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No fijar una edad única de la orfandad: Janito dice 7 años; los demás, entre 4 y 5. La divergencia se explica en la diapositiva de triangulación.</p>
+  </div>
+</section>
+
+<!-- ================= 16 · PRIMER CAPITAL ================= -->
+<section class="slide" data-theme="dark" data-title="El primer capital: cuatro pesos con diez centavos" data-group="Trayectoria" data-min="0.8">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">c. 1905–1910 · Independencia comercial</p>
+      <h2>Cuatro pesos con diez centavos</h2>
+      <p class="lead">La alcancía del niño huérfano se convirtió en el capital inicial de una red comercial que unió la cordillera con los Llanos.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g21" style="gap:18px; align-items:stretch">
+          <div style="display:flex; flex-direction:column; gap:12px">
+            <div class="card card--accent">
+              <span class="num">El gesto</span>
+              <p style="font-size:13.4px; line-height:1.55">Con los diez centavos mandó hacer bastimento y con los cuatro pesos compró cargas de café para venderlo en el puerto de La Plata, en Pore, a donde se dirigían quienes bajaban al Llano. Con la venta compró vacas que llevó a Támara para sacrificar.</p>
+            </div>
+            <div class="card">
+              <span class="num">La red</span>
+              <p style="font-size:13.4px; line-height:1.55">Comerció café, telas, aguardiente y ganado, con correrías por Paz de Ariporo, Pore, Trinidad, Orocué, Nunchía y Labranzagrande.</p>
+            </div>
+            <div class="card">
+              <span class="num">La innovación técnica</span>
+              <p style="font-size:13.4px; line-height:1.55">Para el ascenso de la cordillera, el ganado se calzaba con <b>cotizas de cuero y de fique</b>: una solución logística que hoy se recuerda como marca de ingenio local.</p>
+            </div>
+            <div class="card">
+              <span class="num">Las rutas</span>
+              <p style="font-size:13px; line-height:1.5">Paz de Ariporo · Pore · Trinidad · Orocué · Nunchía · Labranzagrande. El comercio unía la cordillera boyacense con los puertos del Llano y volvía con ganado.</p>
+            </div>
+            <div class="evs">
+              <span class="ev ev--cor">Alcancía: unánime en los cuatro hijos</span>
+              <span class="ev ev--doc">Contexto: Vega Gómez (2021); Franco García (2024)</span>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <figure class="fig" style="margin:0; --figh:300px">
+              <img src="assets/img/mula.webp" alt="Arcenio Fernández Vega montado en su mula Bavaria, rodeado de sus sobrinos." data-lb="mula">
+              <figcaption class="cap"><b>Arcenio Fernández Vega en su mula Bavaria</b>, con sobrinos Latriglia Fernández. De izquierda a derecha: Víctor, Antonio, Arcenio Fernández Vega, Malfito y Anita. Archivo familiar de Ana Joaquina Fernández Vega. Restauración con Meta AI.</figcaption>
+            </figure>
+            <div class="kpi" style="padding:10px 14px"><b style="font-size:30px">$4,10</b><span style="margin-top:4px">Capital inicial reunido en la alcancía</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Contar la secuencia económica: alcancía, café, café en Pore, vacas, red comercial.</li>
+      <li>Explicar la innovación de las cotizas de fique: el ganado subía la cordillera calzado.</li>
+      <li>Vincular esto con la hipótesis del trabajo: sin formación letrada formal, la legitimidad se construyó con reputación comercial.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 17 · ALCALDE DE TÁMARA ================= -->
+<section class="slide" data-theme="paper" data-title="Alcalde de Támara: autoridad y obra pública" data-group="Trayectoria" data-min="0.7">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">c. 1910–1935 · Fecha sin precisar</p>
+      <h2>Gobernar sin presupuesto: las sanciones pedagógicas</h2>
+      <p class="lead">Ante la escasez fiscal, convirtió la sanción en obra pública. Es uno de los rasgos que la memoria familiar y comunitaria atribuye con más detalle a su paso por la alcaldía de Támara.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g3" style="align-items:stretch">
+          <div class="card">
+            <span class="num">El método</span>
+            <h3>«Los escarlanchines»</h3>
+            <p>Enviaba a personas de su confianza a suministrar guarapo a los campesinos que bajaban al pueblo, para incitarlos a disputas menores.</p>
+          </div>
+          <div class="card">
+            <span class="num">La sanción</span>
+            <h3>Pagar con trabajo</h3>
+            <p>Una vez juzgados, les imponía multas consistentes en cargar piedras, palmas, madera o cañabrava para edificar la cárcel, las vías y los recintos comunitarios.</p>
+          </div>
+          <div class="card">
+            <span class="num">El alcance</span>
+            <h3>La justicia entra por casa</h3>
+            <p>Al mismo castigo sometía a los hombres acusados de maltratar a sus mujeres. A su propio sobrino le impuso seis días de trabajo carcelario tras un pleito de borrachera.</p>
+          </div>
+        </div>
+        <div class="grid g2" style="gap:14px">
+          <div class="note" style="font-size:12.4px"><b>Lo que falta:</b> no se localizaron los decretos de nombramiento ni los actos administrativos. El periodo «entre 1910 y 1935» es una hipótesis construida a partir de su mayoría de edad y de la cronología general.</div>
+          <div class="card" style="padding:12px 14px">
+            <span class="num">Por qué importa para la archivística</span>
+            <p style="font-size:12.4px; line-height:1.5">Sin actas ni decretos, la gestión pública de un alcalde de la periferia solo puede reconstruirse por testimonio. Ese es exactamente el tipo de vacío que el trabajo pone en evidencia.</p>
+          </div>
+        </div>
+        <div class="grid g3" style="gap:10px">
+          <div class="kpi" style="padding:11px 14px"><b style="font-size:26px">1910–1935</b><span style="margin-top:3px">Periodo probable de la alcaldía de Támara (hipótesis)</span></div>
+          <div class="kpi" style="padding:11px 14px"><b style="font-size:26px">0</b><span style="margin-top:3px">Decretos de nombramiento localizados</span></div>
+          <div class="kpi" style="padding:11px 14px"><b style="font-size:26px">6 días</b><span style="margin-top:3px">Trabajo carcelario impuesto a su propio sobrino</span></div>
+        </div>
+        <div class="evs">
+          <span class="ev ev--oral">Memoria familiar y comunitaria</span>
+          <span class="ev ev--gap">Sin actos administrativos</span>
+          <span class="ev ev--cor">Infraestructura comunitaria recordada por varias voces</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Contar el mecanismo con precisión, sin humor excesivo: es una práctica de obra pública financiada con trabajo sancionado.</li>
+      <li>Destacar la sanción a su propio sobrino y la protección a las mujeres maltratadas: muestran un estilo de autoridad.</li>
+      <li>Recordar que no hay decretos: la alcaldía se sostiene en memoria, no en acto administrativo.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No afirmar fechas exactas de la alcaldía. No convertir la anécdota en dato probado.</p>
+  </div>
+</section>
+
+<!-- ================= 18 · LA PALABRA ================= -->
+<section class="slide" data-theme="fire" data-title="«La palabra era un documento»" data-group="Trayectoria" data-min="0.8">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">El código ético</p>
+      <h2>«La palabra era un documento»</h2>
+      <p class="lead">El precepto familiar tenía una segunda fórmula: «en un lado de la cara se tiene el sí y en el otro, el no».</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g3" style="align-items:stretch">
+          <div class="card">
+            <span class="num">La apuesta</span>
+            <h3>Dos años sin beber</h3>
+            <p>Apostó a su primera esposa que dejaría de beber dos años. Calmaba las ganas con café cerrero. Cumplido el plazo añadió dos meses más para que ella viera que no había hecho trampa con los últimos días. Ganó la mula que sus hijos recuerdan como <b>«Bavaria»</b>.</p>
+          </div>
+          <div class="card">
+            <span class="num">El pleito</span>
+            <h3>Demandar por la palabra</h3>
+            <p>Demandó en la oficina del trabajo de Villavicencio a un cocotero que lo abandonó a mitad del camino por irse con otro ganadero que le ofreció más paga. No buscaba indemnización: quería enseñarle que la palabra se respeta.</p>
+          </div>
+          <div class="card">
+            <span class="num">La rutina</span>
+            <h3>La hamaca, el periódico y la oración</h3>
+            <p>En sus años finales permanecía en su habitación leyendo periódicos nacionales y rezando. Su rechazo al trabajo de peinilla se resume en una frase que los hijos repiten: «vivía en el campo, pero no era campesino».</p>
+          </div>
+        </div>
+        <div class="card card--accent" style="padding:14px 18px">
+          <p style="font-family:var(--serif); font-size:18px; line-height:1.45; font-style:italic; margin:0; color:rgba(239,231,218,.92)">No era una frase decorativa: explica por qué un comerciante sin formación letrada formal pudo ejercer autoridad en una época en la que la confianza interpersonal sustituía la fragilidad del Estado.</p>
+        </div>
+        <div class="grid g2" style="gap:14px">
+          <div class="card" style="padding:12px 15px"><span class="num">Cómo se sostiene una autoridad sin Estado</span><p style="font-size:12.6px; line-height:1.5">En la sociedad llanera de la primera mitad del siglo XX la legitimidad se construía con respetabilidad personal, cumplimiento de la palabra y capacidad de mediar. El cargo de alcalde formalizaba una autoridad que ya existía socialmente.</p></div>
+          <div class="card" style="padding:12px 15px"><span class="num">El lado incómodo</span><p style="font-size:12.6px; line-height:1.5">Los mismos testimonios que exaltan su palabra recuerdan que le gustaba jactarse del número de hijos «regados». La investigación no oculta ese rasgo: lo registra como parte del personaje y como límite de lo verificable.</p></div>
+        </div>
+        <div class="evs">
+          <span class="ev ev--cor">Corroborado por los cuatro hijos</span>
+          <span class="ev ev--oral">Testigo externo: Pedro Aníbal Rivera Montoya</span>
+          <span class="ev ev--gap">Grado de escolaridad formal: desconocido</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Esta es la tesis de fondo del personaje: la palabra como documento, en ausencia de Estado.</li>
+      <li>Contar las tres anécdotas breves y cerrar con la interpretación.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No presentar el código ético como conclusión probada documentalmente: es un consenso de la memoria oral. El grado de escolaridad formal sigue siendo un vacío.</p>
+  </div>
+</section>
+
+<!-- ================= 19 · LOS DOS HOGARES ================= -->
+<section class="slide" data-theme="paper" data-title="Los dos hogares" data-group="Trayectoria" data-min="0.8">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">s. f. · 1935–1965</p>
+      <h2>Dos hogares, una misma finca</h2>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g2" style="gap:16px; align-items:start">
+          <div class="card">
+            <span class="num">Primer matrimonio · s. f.</span>
+            <h3>Norberta Díaz y el Hato Barreto</h3>
+            <p style="font-size:12.9px">La conoció en Orocué; al parecer era natural de Nunchía y dueña del <b>Hato Barreto</b>. Tuvieron dos hijos: Viterminia y Raulio Fernández Díaz. La historiografía local registra a «los esposos Arsenio Fernández y Norberta Díaz, vecinos de La Trinidad» vendiendo esa fundación por <b>4.000 pesos</b>.</p>
+            <p style="font-size:12.9px">Ella enfermó de lepra lazarina y, por recomendación médica, no convivieron más. No se localizó partida ni fecha de la unión.</p>
+            <div class="evs"><span class="ev ev--doc">L002 · Franco García (2024)</span><span class="ev ev--gap">Partida y fecha de la unión</span></div>
+          </div>
+          <div class="card">
+            <span class="num">Segundo matrimonio · 1935–1965</span>
+            <h3>María Ignacia Salcedo y El Triunfo</h3>
+            <p style="font-size:12.9px">La conoció en <b>Labranzagrande</b> mientras llevaba vacas: ella tenía unos doce años y vendía panelas de leche y cocadas los domingos en la plazoleta frente a la iglesia. Se hospedó en su casa con su compañero de viaje, Ernesto «Pipi» Reyes.</p>
+            <p style="font-size:12.9px">A los dieciséis o diecisiete años ella se fue con él al Llano y se instalaron en la finca <b>El Triunfo</b>. Tuvieron ocho hijos, aunque solo pudo tenerlos después de más de diez años de convivencia y de remedios caseros.</p>
+            <div class="evs"><span class="ev ev--oral">T004 detalla el encuentro</span><span class="ev ev--doc">PM002 · 10 de julio de 1965</span></div>
+          </div>
+        </div>
+        <div class="grid g2" style="gap:16px">
+          <figure class="fig fig--p30" style="margin:0; --figh:212px">
+            <img src="assets/img/familia.webp" alt="Familia Fernández Salcedo con Arcenio Fernández Vega y María Ignacia Salcedo." data-lb="familia">
+            <figcaption class="cap"><b>Familia Fernández Salcedo.</b> De izquierda a derecha: Vignalia, Recadero, Numael Antonio, Susana, Janet Arturo, María Ignacia Salcedo, Arcenio hijo, Viadimir y Arcenio Fernández Vega. Restauración con Meta AI.</figcaption>
+          </figure>
+          <figure class="fig fig--p38" style="margin:0; --figh:212px">
+            <img src="assets/img/hija.webp" alt="Arcenio Fernández Vega con su hija del primer matrimonio y allegados." data-lb="hija" style="height:150px">
+            <figcaption class="cap"><b>Con su hija del primer matrimonio, nietos y allegados.</b> De izquierda a derecha: Fernando García, Recadero Silva, Arcenio Fernández Vega, Viterminia, Victoria y otros hijos de Viterminia. Restauración con Meta AI.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Presentar los dos hogares con respeto y sin sensacionalismo: la familia es la fuente y la audiencia puede incluirla.</li>
+      <li>Señalar el dato documental fuerte: la venta del Hato Barreto por 4.000 pesos y la partida de 1965.</li>
+      <li>Explicar por qué la partida de 1965 llega tan tarde: Norberta Díaz seguía viva.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No afirmar la causa del fin del primer matrimonio como hecho probado: hay tres versiones distintas entre los hijos. No dar el número de hijos extramatrimoniales como dato.</p>
+  </div>
+</section>
+
+<!-- ================= 20 · TRINIDAD 1953 ================= -->
+<section class="slide" data-theme="dark" data-title="Trinidad: el incendio y la reconstrucción" data-group="Trayectoria" data-min="1.0">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">1953–1954 · El documento que sobrevivió al fuego</p>
+      <h2>Reconstruir Trinidad contra la prohibición</h2>
+      <p class="lead">Hacia 1953 fueron incineradas todas las casas del casco urbano. El gobierno militar prohibió la reconstrucción y, mediante el <b>Decreto 295 del 29 de julio de 1954</b>, degradó a Trinidad a inspección de policía del recién creado municipio de San Luis de Palenque.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid" style="grid-template-columns:1fr 236px; gap:16px; align-items:start">
+          <div class="grid g2" style="gap:8px">
+            <div class="card" style="padding:9px 11px"><span class="num">Organización</span><h3 style="font-size:13.6px">Los vecinos ante el Gobierno</h3><p style="font-size:11.6px; line-height:1.42">Arcenio organizó a vecinos y pobladores para interceder ante el Gobierno Nacional; las solicitudes quedaron documentadas en los principales diarios de la época.</p></div>
+            <div class="card" style="padding:9px 11px"><span class="num">Materiales</span><h3 style="font-size:13.6px">Palma y cuero de ganado</h3><p style="font-size:11.6px; line-height:1.42">La reconstrucción física de las viviendas se apoyó en los materiales del Llano: palma y amarres de cuero de ganado.</p></div>
+            <div class="card" style="padding:9px 11px"><span class="num">Sobrevivir a la noche</span><h3 style="font-size:13.6px">Bozales y esparadrapo</h3><p style="font-size:11.6px; line-height:1.42">La familia dormía en la sabana abierta; los perros llevaban bozal y a los gallos se les ponía esparadrapo en el pico para que el ruido no los delatara.</p></div>
+            <div class="card" style="padding:9px 11px"><span class="num">Filiación</span><h3 style="font-size:13.6px">«Liberal de cuna»</h3><p style="font-size:11.6px; line-height:1.42">Sufrió el acoso de las facciones gubernamentales armadas: en una ocasión fue amarrado y conducido prisionero hacia el sector de Guanapalo antes de ser liberado.</p></div>
+          </div>
+          <figure class="fig fig--contain" style="margin:0; --figh:252px">
+            <img src="assets/img/prensa1.webp" alt="Recorte de El Tiempo del 30 de septiembre de 1954 titulado «Que la reconstrucción urbana de Trinidad sea permitida, se solicita»." data-lb="prensa1">
+            <figcaption class="cap"><b>NP001 · El Tiempo, 30 sep 1954.</b> Hemeroteca de la Biblioteca Luis Ángel Arango. Corresponsalía de Plazas Olarte.</figcaption>
+          </figure>
+        </div>
+        <div class="tl" style="padding-top:2px">
+          <div class="st"><span class="dot"></span><span class="yr">Hacia 1953</span><span class="tx">Incendio del casco urbano: «fueron incineradas todas sus casas».</span></div>
+          <div class="st"><span class="dot"></span><span class="yr">29 jul 1954</span><span class="tx">Decreto 295: se prohíbe reconstruir y Trinidad pasa a inspección de policía.</span></div>
+          <div class="st"><span class="dot"></span><span class="yr">1954</span><span class="tx">Organización de vecinos y gestiones de Arcenio en Bogotá.</span></div>
+          <div class="st"><span class="dot"></span><span class="yr">30 sep 1954</span><span class="tx">El Tiempo publica la solicitud de la comisión de ganaderos y agricultores.</span></div>
+        </div>
+        <div class="evs" style="margin-top:2px">
+          <span class="ev ev--doc">NP001 · El Tiempo, 30 sep 1954</span>
+          <span class="ev ev--cor">NP002 · recortes conservados por él</span>
+          <span class="ev ev--oral">Guanapalo y bozales: testimonios</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Contextualizar el incendio y el Decreto 295 del 29 de julio de 1954.</li>
+      <li>Mostrar el recorte de El Tiempo y leer el titular en voz alta.</li>
+      <li>Conectar la comisión de ganaderos y agricultores con las solicitudes que él conservaba (NP002).</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No afirmar que Arcenio encabezó la comisión: el documento habla de una comisión de ganaderos y agricultores; su liderazgo proviene de la memoria oral y de sus recortes.</p>
+  </div>
+</section>
+
+<!-- ================= 21 · ARCHIVO FAMILIAR EN IMÁGENES ================= -->
+<section class="slide" data-theme="paper" data-title="El archivo familiar: manuscrito y carné" data-group="Trayectoria" data-min="0.7">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Archivo privado familiar · F001–F002</p>
+      <h2>Lo que la familia guardó sin saber que era archivo</h2>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g2" style="gap:18px; align-items:start">
+          <figure class="fig fig--contain" style="margin:0; --figh:392px">
+            <img src="assets/img/manuscrito.webp" alt="Manuscrito de puño y letra de Arcenio Fernández Vega con un listado numerado de nombres." data-lb="manuscrito">
+            <figcaption class="cap"><b>F002 · Manuscrito autógrafo.</b> El único escrito de su puño y letra hallado en la investigación: un listado numerado con nombres de mujeres y el cálculo de hijos engendrados fuera de los matrimonios. Archivo de Bladimir Fernández Salcedo. Restauración con Meta AI.</figcaption>
+          </figure>
+          <div style="display:flex; flex-direction:column; gap:11px">
+            <figure class="fig fig--paper" style="margin:0; --figh:196px">
+              <img src="assets/img/carne.webp" alt="Carné de usuario de la Caja Agraria de Colombia a nombre de Arcenio Fernández Vega." data-lb="carne">
+              <figcaption class="cap"><b>F001 · Carné de la Caja Agraria.</b> Permitió conocer el número de cédula y el lugar de expedición: Trinidad. Archivo de Ana Joaquina Fernández Vega.</figcaption>
+            </figure>
+            <div class="card card--accent" style="flex:1">
+              <span class="num">Por qué es decisivo</span>
+              <p style="font-size:12.4px; line-height:1.48">El manuscrito es prueba de escritura y de memoria propia; el carné contradice la ausencia de registro en la Registraduría de Trinidad: sitúa allí la expedición de su cédula. La tensión entre ambos es, en sí misma, un hallazgo.</p>
+            </div>
+            <div class="evs">
+              <span class="ev ev--doc">F001 · F002</span>
+              <span class="ev ev--gap">Identidades y cifra de hijos: no verificadas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Leer el manuscrito como documento: listado y cálculo, no confesión.</li>
+      <li>Usar el carné para mostrar la contradicción con la Registraduría.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No presentar los nombres del manuscrito como identidades confirmadas ni la cifra de hijos como dato verificado.</p>
+  </div>
+</section>
+
+<!-- ================= 22 · LOS ÚLTIMOS AÑOS ================= -->
+<section class="slide" data-theme="dark" data-title="1965–1974: el matrimonio, la muerte y la tumba" data-group="Trayectoria" data-min="0.7">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">1965 · 1974 · Etapa final</p>
+      <h2>El matrimonio, la muerte y una tumba orientada al norte</h2>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g21" style="gap:18px; align-items:stretch">
+          <div style="display:flex; flex-direction:column; gap:11px">
+            <p style="margin:0; font-size:13.2px; line-height:1.55; color:rgba(239,231,218,.84)">Se casó con <b>María Ignacia Salcedo</b> en la finca El Triunfo, jurisdicción rural de Trinidad, el sábado <b>10 de julio de 1965</b>, oficiando el párroco de San Luis de Palenque. La partida consigna que tenía <b>75 años</b> y ella <b>42</b>: de ahí se deduce el año de nacimiento. La demora se explica porque Norberta Díaz seguía viva; su muerte debió ocurrir o conocerse cerca de esa fecha.</p>
+            <p style="margin:0; font-size:13.2px; line-height:1.55; color:rgba(239,231,218,.84)">Enfermó el <b>1 de junio de 1974</b> y permaneció postrado dos meses; falleció el <b>1 de agosto</b>, a los 84 años, en El Triunfo. Dos de sus hijos se habían quitado la vida ya en la adultez. Por una creencia regional, su sepultura se orientó en sentido <b>norte-sur</b> —a diferencia de las demás tumbas del cementerio de San Luis de Palenque, de oriente a occidente— para romper en el sistema familiar esa cadena, lo cual, según los testimonios, ocurrió.</p>
+            <div class="evs">
+              <span class="ev ev--doc">PM002 · partida de matrimonio</span>
+              <span class="ev ev--oral">Cuatro testimonios coincidentes</span>
+              <span class="ev ev--gap">Sin certificado de defunción localizado</span>
+            </div>
+          </div>
+          <figure class="fig" style="margin:0; --figh:392px">
+            <img src="assets/img/tumba.webp" alt="Tumba de Arcenio Fernández Vega en el cementerio de San Luis de Palenque." data-lb="tumba">
+            <figcaption class="cap"><b>Tumba de Arcenio Fernández Vega</b> en el cementerio de San Luis de Palenque, orientada en sentido norte-sur. Documento de grado, anexo 2.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Explicar la partida de 1965 como documento bisagra: prueba el matrimonio y permite deducir el nacimiento.</li>
+      <li>Contar la orientación de la tumba como creencia familiar, no como hecho verificable.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">Tratar el suicidio de dos hijos con sobriedad y sin detalles innecesarios. No afirmar causas médicas ni fechas sin soporte.</p>
+  </div>
+</section>
+
+<!-- ================= 23 · RETRATO FAMILIAR ================= -->
+<section class="slide" data-theme="paper" data-title="Galería: el personaje en imágenes" data-group="Trayectoria" data-min="0.5">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Fondo fotográfico familiar · F001</p>
+      <h2>El personaje, en cuatro escenas</h2>
+      <p class="lead">Las fotografías son figuras del documento de grado. Varias fueron restauradas con Meta AI, según se indica en cada nota de fuente. Toca una imagen para ampliarla.</p>
+    </div>
+    <div class="sbody">
+      <div class="grid g4" style="gap:12px; height:calc(1em * var(--fs) * 30.5); min-height:430px; align-items:stretch" data-gallery>
+        <figure class="fig" style="margin:0; --figh:100%">
+          <img src="assets/img/retrato.webp" alt="Retrato de Arcenio Fernández Vega." data-lb="retrato">
+          <figcaption class="cap"><b>Retrato.</b> Archivo de Ana Joaquina Fernández Salcedo. Restauración con Meta AI.</figcaption>
+        </figure>
+        <figure class="fig" style="margin:0; --figh:100%">
+          <img src="assets/img/sobrinos.webp" alt="Arcenio Fernández Vega con sus sobrinos Latriglia Fernández." data-lb="sobrinos">
+          <figcaption class="cap"><b>Con sobrinos Latriglia Fernández.</b> De izquierda a derecha: Malfito, Víctor, Anita, Antonio y Arcenio Fernández Vega. Restauración con Meta AI.</figcaption>
+        </figure>
+        <figure class="fig" style="margin:0">
+          <img src="assets/img/hija.webp" alt="Arcenio con su hija del primer matrimonio y allegados." data-lb="hija">
+          <figcaption class="cap"><b>Con su hija del primer matrimonio</b>, nietos y allegados. Restauración con Meta AI.</figcaption>
+        </figure>
+        <figure class="fig" style="margin:0; --figh:100%">
+          <img src="assets/img/familia.webp" alt="Familia Fernández Salcedo." data-lb="familia">
+          <figcaption class="cap"><b>Familia Fernández Salcedo</b>, con María Ignacia Salcedo y sus hijos. Restauración con Meta AI.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Usar la galería como pausa visual: mostrar el rostro y los escenarios sin añadir interpretación.</li>
+      <li>Recordar la advertencia de restauración con IA en cada foto.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 24 · DIVISOR ================= -->
+<section class="slide" data-theme="fire" data-title="Bloque 4 · La prueba" data-group="Triangulación" data-min="0.2">
+  <div class="pad">
+    <hr class="rule">
+    <div class="sbody">
+      <div class="divider">
+        <span class="kicker">Bloque cuatro</span>
+        <div class="big">04</div>
+        <h2>La prueba</h2>
+        <p>Qué confirman las voces, en qué discrepan, qué callan — y dónde se buscó sin encontrar nada.</p>
+        <div class="evs" style="margin-top:14px">
+          <span class="ev ev--doc">25 · Coincidencias</span>
+          <span class="ev ev--doc">26 · Divergencias</span>
+          <span class="ev ev--doc">27 · Vacíos</span>
+          <span class="ev ev--doc">28 · Rutas frustradas</span>
+          <span class="ev ev--doc">29 · Geografía de la búsqueda</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes"><ul><li>Transición: del relato al contraste crítico.</li></ul></div>
+</section>
+
+<!-- ================= 25 · COINCIDENCIAS ================= -->
+<section class="slide" data-theme="dark" data-title="Coincidencias: nueve núcleos" data-group="Triangulación" data-min="0.9">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Resultados 7.3 · Triangulación crítica</p>
+      <h2>Nueve coincidencias que no se coordinaron</h2>
+      <p class="lead">Aparecieron de forma independiente y constante en los relatos, sin categorías preconcebidas: surgieron de la propia fuerza discursiva de la tradición oral.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap" style="gap:11px">
+        <div class="grid g3" style="gap:9px">
+          <div class="card" style="padding:10px 12px"><span class="num">01</span><h3 style="font-size:13.4px">Orfandad y tutela</h3><p style="font-size:11.4px; line-height:1.4">Huérfano muy temprano, criado por Ana Joaquina y Vitus Latriglia, «el Jurungo».</p></div>
+          <div class="card" style="padding:10px 12px"><span class="num">02</span><h3 style="font-size:13.4px">El velorio materno</h3><p style="font-size:11.4px; line-height:1.4">Coincidencia exacta del niño que busca llegar al cuerpo de su madre.</p></div>
+          <div class="card" style="padding:10px 12px"><span class="num">03</span><h3 style="font-size:13.4px">La alcancía de $4,10</h3><p style="font-size:11.4px; line-height:1.4">El dinero con el que inició sus negocios de ganado y café.</p></div>
+          <div class="card" style="padding:10px 12px"><span class="num">04</span><h3 style="font-size:13.4px">Seis a ocho huevos al día</h3><p style="font-size:11.4px; line-height:1.4">Consenso entre risas sobre un hábito innegociable.</p></div>
+          <div class="card" style="padding:10px 12px"><span class="num">05</span><h3 style="font-size:13.4px">«Vivía en el campo, pero no era campesino»</h3><p style="font-size:11.4px; line-height:1.4">Rechazo al trabajo de peinilla, machete o hacha.</p></div>
+          <div class="card" style="padding:10px 12px"><span class="num">06</span><h3 style="font-size:13.4px">La intocabilidad de la palabra</h3><p style="font-size:11.4px; line-height:1.4">Intolerancia a la mentira y cumplimiento estricto de lo prometido.</p></div>
+          <div class="card" style="padding:10px 12px"><span class="num">07</span><h3 style="font-size:13.4px">La jactancia de la descendencia</h3><p style="font-size:11.4px; line-height:1.4">Le gustaba presumir el recuento de hijos «regados»: entre 33 y 39.</p></div>
+          <div class="card" style="padding:10px 12px"><span class="num">08</span><h3 style="font-size:13.4px">La hamaca, el periódico y la oración</h3><p style="font-size:11.4px; line-height:1.4">Sus años finales en la habitación, leyendo prensa nacional.</p></div>
+          <div class="card" style="padding:10px 12px"><span class="num">09</span><h3 style="font-size:13.4px">Hospitalidad llanera</h3><p style="font-size:11.4px; line-height:1.4">El Triunfo como posada ganadera, confirmada por el testigo externo.</p></div>
+        </div>
+        <div class="note" style="font-size:12.2px"><b>Qué demuestra esto:</b> la memoria hablada, cuando es corroborada por voces diversas, adquiere el estatus de documento histórico y valor de prueba. Rasgos como el ahorro metódico y la defensa de la palabra explican cómo un comerciante sin formación letrada formal consolidó legitimidad para ejercer cargos de mando.</div>
+        <div class="grid g3" style="gap:10px">
+          <div class="kpi" style="padding:11px 14px"><b style="font-size:26px">9</b><span style="margin-top:3px">Núcleos temáticos recurrentes, sin categorías previas</span></div>
+          <div class="kpi" style="padding:11px 14px"><b style="font-size:26px">5</b><span style="margin-top:3px">Voces independientes: cuatro hijos y un testigo externo</span></div>
+          <div class="kpi" style="padding:11px 14px"><b style="font-size:26px">4</b><span style="margin-top:3px">Tipos de fuente usados para contrastar cada relato</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Definir el ejercicio: contrastar cuatro hijos y un testigo externo entre sí y con los documentos.</li>
+      <li>Recorrer las coincidencias principales sin leerlas todas: orfandad, velorio, alcancía, palabra y hospitalidad.</li>
+      <li>Cerrar con la consecuencia metodológica: la convergencia oral adquiere valor probatorio.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 26 · DIVERGENCIAS ================= -->
+<section class="slide" data-theme="paper" data-title="Divergencias: la firma de la memoria" data-group="Triangulación" data-min="0.7">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Lo que no coincide</p>
+      <h2>Divergencias: la firma de la memoria oral</h2>
+      <p class="lead">Si todos los testimonios coincidieran milimétricamente, el relato parecería aprendido. Que varíe no es un error: es la huella de cada hijo.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <table class="table">
+          <thead><tr><th style="width:230px">Punto en disputa</th><th>Versión A</th><th>Versión B</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>Edad en la orfandad materna</b><br><span class="code">Cronología</span></td>
+              <td>Janet Arturo «Janito» <span class="code">T001</span>: tenía <b>7 años</b> cuando falleció su madre.</td>
+              <td>Ana Joaquina, Herminsul y Bladimir <span class="code">T004 · T002 · T003</span>: entre <b>4 y 5 años</b>, o «muy niño».</td>
+            </tr>
+            <tr>
+              <td><b>Fin del primer matrimonio</b><br><span class="code">Norberta Díaz</span></td>
+              <td>Janito y Bladimir <span class="code">T001 · T003</span>: Norberta contagió lepra lazarina y los médicos ordenaron aislarla.</td>
+              <td>Ana Joaquina <span class="code">T004</span>: quedó viudo, sin más. Herminsul <span class="code">T002</span>: no recuerda las razones.</td>
+            </tr>
+            <tr>
+              <td><b>El encuentro con María Ignacia</b><br><span class="code">Labranzagrande</span></td>
+              <td>Ana Joaquina <span class="code">T004</span>: narra la plazoleta y el incidente del puesto de cocadas con Ernesto «Pipi» Reyes.</td>
+              <td>Janito y Herminsul <span class="code">T001 · T002</span>: desconocen cómo se conocieron sus padres.</td>
+            </tr>
+            <tr>
+              <td><b>Rasgos físicos y salud</b><br><span class="code">El testigo externo</span></td>
+              <td>Los hijos <span class="code">T001–T004</span>: estampa imponente y evolución de su vejez.</td>
+              <td>Pedro Aníbal Rivera <span class="code">T005</span>: de regular estatura, un poco gordo pero no barrigón, y una carnosidad junto al ojo.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="grid g2" style="gap:14px">
+          <div class="card" style="padding:11px 13px"><span class="num">Cómo se interpreta</span><p style="font-size:12.2px; line-height:1.45">El paso de las décadas y la edad que tenía cada hijo al escuchar estas historias influyeron en lo que lograron retener. Los vacíos de unos frente al detalle de otros justifican la triangulación.</p></div>
+          <div class="card" style="padding:11px 13px"><span class="num">Qué gana la investigación</span><p style="font-size:12.2px; line-height:1.45">El contraste le devuelve la dimensión humana al personaje y lo aleja del mito perfecto. No se elige una versión: se muestran todas y se dice qué las sostiene.</p></div>
+        </div>
+        <div class="note" style="font-size:12.4px"><b>Regla de trabajo:</b> ante una divergencia no se busca «la versión correcta», sino identificar qué tipo de fuente podría resolverla. Cuando ninguna puede, la discrepancia se conserva y se enuncia como parte del resultado.</div>
+        <div class="evs">
+          <span class="ev ev--oral">Divergencia 01 · edad de la orfandad</span>
+          <span class="ev ev--oral">Divergencia 02 · fin del primer matrimonio</span>
+          <span class="ev ev--oral">Divergencia 03 · el encuentro con María Ignacia</span>
+          <span class="ev ev--cor">Divergencia 04 · rasgos físicos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Presentar las divergencias como dato, no como defecto del testimonio.</li>
+      <li>No elegir una versión y descartar las otras: la tesis sostiene la pluralidad.</li>
+      <li>Destacar el valor del testigo externo: aporta rasgos que ningún hijo mencionó.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No usar la cifra de hijos como dato: es una jactancia recordada por los testigos.</p>
+  </div>
+</section>
+
+<!-- ================= 27 · VACÍOS ================= -->
+<section class="slide" data-theme="dark" data-title="Vacíos: el silencio del archivo" data-group="Triangulación" data-min="0.7">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Lo que no se sabe</p>
+      <h2>Vacíos: el silencio del archivo también comunica</h2>
+      <p class="lead">Estas ausencias no son fallos de la recolección: revelan las fracturas históricas provocadas por la pérdida de archivos y el carácter predominantemente oral de la cultura llanera de la época.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g2" style="gap:11px">
+          <div class="card card--accent"><span class="num">01 · Precisión cronológica</span><h3 style="font-size:14.5px">Fechas clave sin documento</h3><p>Se desconocen las fechas exactas del nacimiento —sabían que cumplía años el 25 de diciembre—, del primer matrimonio, del servicio en las alcaldías o de la adquisición de El Triunfo. Recuerdan el valor de compra y Ana Joaquina dice tener o haber tenido copia de la «carta venta».</p><p class="code" style="margin-top:auto">→ Notarías de Orocué y Yopal; escrituras y remates</p></div>
+          <div class="card"><span class="num">02 · Los progenitores</span><h3 style="font-size:14.5px">Causas de muerte sin registro</h3><p>No existe registro ni memoria familiar de cómo o en qué circunstancias fallecieron Sótero Fernández y Joaquina Vega Mojica.</p><p class="code" style="margin-top:auto">→ Libros parroquiales de Támara y Socotá (Boyacá)</p></div>
+          <div class="card"><span class="num">03 · Escolaridad</span><h3 style="font-size:14.5px">Instrucción formal no documentada</h3><p>Se destaca su oratoria y competencia lectoescritora, pero sus hijos ignoran en qué institución o durante cuántos años estudió. Se considera muy probable que haya cursado la primaria en Támara.</p><p class="code" style="margin-top:auto">→ Archivos escolares y registros de matrícula</p></div>
+          <div class="card"><span class="num">04 · Soportes institucionales</span><h3 style="font-size:14.5px">Sin partidas, decretos ni escrituras</h3><p>Ausencia de la partida de bautismo, del acta matrimonial con Norberta Díaz, de los decretos de nombramiento y de escrituras notariales. Solo se conserva la referencia oral a una «carta venta» privada de cien pesos.</p><p class="code" style="margin-top:auto">→ Archivo General de la Nación; gacetas de Boyacá</p></div>
+        </div>
+        <div class="note" style="font-size:12.4px"><b>La interpretación:</b> la validez de una carta venta de cien pesos o el peso de una orden de alcalde emanaban de la respetabilidad personal y de la palabra empeñada, no de sellos de notaría. Y confirman la urgencia de rescatar la memoria comunitaria antes de que los últimos testigos desaparezcan.</div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Enumerar los cuatro vacíos con su pista de búsqueda: es la agenda abierta de la investigación.</li>
+      <li>Explicar la tesis: el silencio del archivo informa sobre cómo funcionaba la autoridad en la periferia.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No presentar la ausencia de documentos como falta de rigor de la investigación: es un hallazgo estructural.</p>
+  </div>
+</section>
+
+<!-- ================= 28 · RUTAS FRUSTRADAS ================= -->
+<section class="slide" data-theme="paper" data-title="Rutas frustradas: dónde se buscó" data-group="Triangulación" data-min="0.8">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Búsquedas institucionales · R001–R002</p>
+      <h2>Dónde se buscó y qué respondió cada archivo</h2>
+      <p class="lead">Una parte de los resultados consiste en demostrar, con nombre y fecha, dónde se buscó y qué no se encontró. La ausencia documental es un dato, no un fracaso.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <table class="table">
+          <thead><tr><th style="width:250px">Lugar y fecha</th><th>Respuesta obtenida</th><th style="width:120px">Resultado</th></tr></thead>
+          <tbody>
+            <tr><td><b>Registraduría de Támara</b><br><span class="src" style="margin:0">Visita del 18 de julio de 2026</span></td><td>Los archivos de registro civil e identificación anteriores a 1990 fueron incinerados durante un ataque armado al despacho municipal. La Registraduría Nacional respondió que el registro está en formato tomo y folio y solo se expide en la oficina de origen.</td><td><span class="tag tag--gap">Sin acceso</span></td></tr>
+            <tr><td><b>Registraduría de Trinidad</b><br><span class="src" style="margin:0">Visita del 21 de julio de 2026</span></td><td>La búsqueda sistemática en libros de archivo no arrojó ningún registro ni tarjeta dactilar a nombre de Arcenio Fernández Vega, aunque el carné de la Caja Agraria indica que su cédula se expidió en Trinidad.</td><td><span class="tag tag--gap">Sin registro</span></td></tr>
+            <tr><td><b>Parroquia de Támara</b><br><span class="src" style="margin:0">Búsqueda en libros parroquiales</span></td><td>La partida de bautismo directa no pudo localizarse. El vacío sobre su nacimiento se mantiene: la fecha se deduce de la partida de matrimonio de 1965.</td><td><span class="tag tag--gap">No hallada</span></td></tr>
+            <tr><td><b>Hemeroteca Luis Ángel Arango</b><br><span class="src" style="margin:0">Seis visitas · 1953–1955</span></td><td>El recorte del álbum familiar carece de fecha porque no se conservó la hoja completa. Se encontró otra nota sobre los mismos hechos, sin poder precisar si fue antes o después de la solicitud.</td><td><span class="tag">Parcial</span></td></tr>
+            <tr><td><b>Archivo Histórico de Boyacá</b><br><span class="src" style="margin:0">El Boyacense, 1934–1945</span></td><td>Se verificó la estructura administrativa regional y el nombramiento de Antonio Latriglia en la recaudación de rentas, pero no se hallaron los decretos de Arcenio como alcalde.</td><td><span class="tag">Parcial</span></td></tr>
+          </tbody>
+        </table>
+        <div class="card card--accent" style="padding:11px 14px"><p style="font-size:12.4px; line-height:1.5; margin:0"><b>Lo que sí sostuvo la búsqueda:</b> tres partidas parroquiales, un fondo fotográfico, un manuscrito autógrafo, un álbum de recortes y la nota de El Tiempo de 1954. Frente a las rutas frustradas, el acervo eclesiástico, el archivo familiar y la prensa nacional sostuvieron la reconstrucción.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Recorrer la tabla como geografía de la búsqueda: cinco lugares, fechas y respuestas.</li>
+      <li>Explicar la respuesta de la Registraduría Nacional: formato tomo y folio, solo en la oficina de origen.</li>
+      <li>Sostener la idea: la ausencia documental es un dato sobre cómo funcionaba la autoridad en la periferia.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 29 · GEOGRAFÍA ================= -->
+<section class="slide" data-theme="dark" data-title="Geografía de la búsqueda" data-group="Triangulación" data-min="0.5">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">El mapa del trabajo de campo</p>
+      <h2>Cinco lugares, seis jornadas en una hemeroteca</h2>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g5" style="gap:10px; align-items:stretch">
+          <div class="card"><span class="num">Támara · Casanare</span><h3 style="font-size:14px">Parroquia y Registraduría</h3><p style="font-size:11.6px">Dos visitas. Se localizaron la partida de bautismo de Ana Joaquina (1881) y su matrimonio con Víctor Latriglia (1898). La partida de bautismo de Arcenio no apareció.</p><div class="evs"><span class="ev ev--cor">Parcial</span></div></div>
+          <div class="card"><span class="num">Trinidad · Casanare</span><h3 style="font-size:14px">Entrevistas y Registraduría</h3><p style="font-size:11.6px">Cuatro entrevistas presenciales en julio de 2026 y búsqueda sistemática en libros de archivo y tarjetas dactilares.</p><div class="evs"><span class="ev ev--gap">Sin registro</span></div></div>
+          <div class="card"><span class="num">San Luis de Palenque</span><h3 style="font-size:14px">Iglesia parroquial</h3><p style="font-size:11.6px">Búsqueda del certificado del segundo matrimonio: <b>localizado</b>. La partida de 1965 es la que permite fijar el nacimiento en 1889.</p><div class="evs"><span class="ev ev--doc">Hallado</span></div></div>
+          <div class="card"><span class="num">Tunja · Boyacá</span><h3 style="font-size:14px">Archivo Histórico de Boyacá</h3><p style="font-size:11.6px">Consulta de El Boyacense (1934–1945) en agosto y octubre de 2026. Se verificó el nombramiento de Antonio Latriglia en rentas, no los decretos de Arcenio.</p><div class="evs"><span class="ev ev--cor">Parcial</span></div></div>
+          <div class="card"><span class="num">Bogotá</span><h3 style="font-size:14px">Hemeroteca Luis Ángel Arango</h3><p style="font-size:11.6px">Seis visitas y revisión de agosto de 1953 a abril de 1955. Se halló la nota del 30 de septiembre de 1954 sobre la reconstrucción de Trinidad.</p><div class="evs"><span class="ev ev--doc">Hallado</span></div></div>
+        </div>
+        <div class="grid g2" style="gap:14px">
+          <div class="card" style="padding:12px 14px"><span class="num">Qué significa</span><p style="font-size:12.2px; line-height:1.5">La constatación de estos vacíos ratifica el valor epistemológico y social de la investigación: en contextos periféricos golpeados por la violencia, donde el Estado perdió sus propios soportes burocráticos, la memoria oral y la custodia afectiva de los archivos familiares son los únicos refugios posibles.</p></div>
+          <div class="card" style="padding:12px 14px"><span class="num">Dónde seguir buscando</span><p style="font-size:12.2px; line-height:1.5">Notarías de Orocué y Yopal · Archivo General de la Nación · archivos familiares de los nietos y del hijo Arcenio, en Villanueva (Casanare) · gacetas oficiales del Archivo Histórico de Boyacá, completas desde comienzos del siglo XIX y aún sin digitalizar.</p></div>
+        </div>
+        <div class="grid g4" style="gap:10px">
+          <div class="kpi" style="padding:10px 13px"><b style="font-size:24px">5</b><span style="margin-top:2px">Lugares recorridos</span></div>
+          <div class="kpi" style="padding:10px 13px"><b style="font-size:24px">5</b><span style="margin-top:2px">Entrevistas realizadas</span></div>
+          <div class="kpi" style="padding:10px 13px"><b style="font-size:24px">6</b><span style="margin-top:2px">Jornadas en la hemeroteca</span></div>
+          <div class="kpi" style="padding:10px 13px"><b style="font-size:24px">4</b><span style="margin-top:2px">Rutas frustradas documentadas</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Recorrer el mapa de izquierda a derecha: el recorrido real del trabajo de campo.</li>
+      <li>Dejar clara la agenda pendiente: notarías, AGN, archivos de nietos y gacetas.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 30 · DIVISOR ================= -->
+<section class="slide" data-theme="fire" data-title="Bloque 5 · Aportes" data-group="Conclusiones" data-min="0.2">
+  <div class="pad">
+    <hr class="rule">
+    <div class="sbody">
+      <div class="divider">
+        <span class="kicker">Bloque cinco</span>
+        <div class="big">05</div>
+        <h2>Lo que se sostiene</h2>
+        <p>Conclusiones, límites declarados y los cuatro frentes de recomendación.</p>
+        <div class="evs" style="margin-top:14px">
+          <span class="ev ev--doc">31 · Conclusiones I</span>
+          <span class="ev ev--doc">32 · Conclusiones II</span>
+          <span class="ev ev--doc">33 · Aportes y horizontes</span>
+          <span class="ev ev--doc">34 · Recomendaciones</span>
+          <span class="ev ev--doc">35 · Referencias</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes"><ul><li>Transición: de los resultados a las afirmaciones que el trabajo puede sostener.</li></ul></div>
+</section>
+
+<!-- ================= 31 · CONCLUSIONES 1 ================= -->
+<section class="slide" data-theme="paper" data-title="Conclusiones I: método, fuentes y hallazgos" data-group="Conclusiones" data-min="0.8">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Conclusiones · 1 de 2</p>
+      <h2>Lo que la investigación sostiene</h2>
+      <p class="lead">Afirmaciones respaldadas por las fuentes del trabajo de grado.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g3" style="align-items:stretch">
+          <div class="card card--accent">
+            <span class="num">01 · Método</span>
+            <h3>Articulación de lo escrito y lo vivo</h3>
+            <p>La trayectoria de actores locales invisibilizados por la historiografía oficial solo puede reconstruirse articulando el registro material escrito con la memoria viva del territorio, y superando una dispersión documental extrema.</p>
+          </div>
+          <div class="card">
+            <span class="num">02 · Fuentes</span>
+            <h3>Cuatro grandes tipologías</h3>
+            <ul class="clean" style="gap:5px">
+              <li><b>Orales:</b> cinco testimonios en profundidad con registros y autorizaciones éticas.</li>
+              <li><b>Eclesiásticas:</b> libros parroquiales de bautismo y matrimonio.</li>
+              <li><b>Archivo privado:</b> fotografías, manuscrito y recortes.</li>
+              <li><b>Hemerográficas e historiográficas:</b> de escala nacional y regional.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="num">03 · Hallazgo</span>
+            <h3>Hitos biográficos reconstruidos</h3>
+            <p>Infancia y orfandad en Támara bajo la tutela de su hermana y de Víctor Latriglia; primer capital independiente de $4,10; comercio ganadero e innovación al calzar el ganado con cotizas de cuero y de fique; dos hogares; alcaldías; reconstrucción de Trinidad tras 1953; arraigo en El Triunfo hasta 1974.</p>
+          </div>
+        </div>
+        <div class="grid g3" style="gap:10px">
+          <div class="kpi" style="padding:10px 13px"><b style="font-size:28px">$4,10</b><span style="margin-top:2px">Capital inicial documentado por la memoria oral</span></div>
+          <div class="kpi" style="padding:10px 13px"><b style="font-size:28px">5 + 1</b><span style="margin-top:2px">Cuatro hijos y un testigo externo</span></div>
+          <div class="kpi" style="padding:10px 13px"><b style="font-size:28px">1889–1974</b><span style="margin-top:2px">Ochenta y cinco años de trayectoria</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Presentar las tres primeras conclusiones: método, fuentes y hallazgo.</li>
+      <li>Enumerar los hitos sin detallarlos: ya fueron presentados en la trayectoria.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 32 · CONCLUSIONES 2 ================= -->
+<section class="slide" data-theme="dark" data-title="Conclusiones II: límites, contribución y honestidad" data-group="Conclusiones" data-min="0.9">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Conclusiones · 2 de 2</p>
+      <h2>Lo que queda abierto, dicho con precisión</h2>
+      <p class="lead">Decir lo que no se sabe también es un resultado.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g3" style="align-items:stretch">
+          <div class="card">
+            <span class="num">04 · Límites</span>
+            <h3>Limitaciones y causas estructurales</h3>
+            <p style="font-size:12.2px">Quedaron pendientes la partida de bautismo directa, el registro civil y la cédula, el certificado de defunción, la partida del primer matrimonio, los decretos de nombramiento y las escrituras notariales.</p>
+            <p style="font-size:12.2px; margin-top:auto">Causas: la incineración de la Registraduría de Támara en los años noventa, los incendios de Trinidad a mediados de siglo y la falta de conservación sistemática.</p>
+          </div>
+          <div class="card">
+            <span class="num">05 · Contribución</span>
+            <h3>Liderazgo cívico, económico e institucional</h3>
+            <p style="font-size:12.2px">Referente de liderazgo cívico y autoridad institucional en Casanare durante la primera mitad del siglo XX:</p>
+            <ul class="clean" style="gap:4px; margin-top:2px">
+              <li>Infraestructura comunitaria con sanciones pedagógicas.</li>
+              <li>Articulación de la reconstrucción de Trinidad.</li>
+              <li>Dinamización de los circuitos comerciales entre Orocué, Trinidad, Támara y la cordillera boyacense.</li>
+              <li>Mediación de conflictos y sostenimiento de escuela primaria en su predio.</li>
+            </ul>
+          </div>
+          <div class="card card--accent">
+            <span class="num">06 · Honestidad</span>
+            <h3>Hipótesis orales por confirmar</h3>
+            <ul class="clean" style="gap:5px">
+              <li>Fecha de inicio, duración y actos administrativos de sus periodos como alcalde.</li>
+              <li>Cronología de su transición residencial entre Támara, Orocué y Trinidad.</li>
+              <li>Número real e identificación completa de su descendencia extramatrimonial.</li>
+              <li>Su nivel exacto de instrucción formal.</li>
+              <li>Soportes jurídicos de adquisición de tierras más allá de la «carta venta».</li>
+            </ul>
+          </div>
+        </div>
+        <div class="note" style="font-size:12.6px"><b>Aporte a la memoria histórica y a CIBAR:</b> los archivos personales dejan de ser un recurso complementario para volverse soporte probatorio de resistencia frente al olvido. Validez metodológica, patrimonio e identidad y modelo replicable para otros contextos rurales e invisibilizados de Colombia.</div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Nombrar los límites sin excusas: son estructurales, no personales.</li>
+      <li>Presentar la contribución del personaje en cuatro rasgos concretos.</li>
+      <li>Cerrar con la honestidad metodológica: las hipótesis enumeradas son la agenda de quienes continúen.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No prometer resultados que el trabajo no obtuvo. No atribuir las recomendaciones a terceros: son propuestas de la autora.</p>
+  </div>
+</section>
+
+<!-- ================= 33 · APORTES Y LÍNEAS ================= -->
+<section class="slide" data-theme="paper" data-title="Tres aportes y tres horizontes" data-group="Conclusiones" data-min="0.5">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Aportes y proyección</p>
+      <h2>Tres aportes, tres horizontes</h2>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g2" style="gap:22px; align-items:start">
+          <div>
+            <p class="eyebrow" style="color:#8A4A1E; margin-bottom:10px">Aporte a la memoria histórica y a CIBAR</p>
+            <div class="grid" style="gap:9px">
+              <div class="card" style="padding:10px 13px"><h3 style="font-size:14px">Validez metodológica</h3><p>Integración de archivos familiares fragmentados con memoria viva para suplir vacíos documentales del Estado.</p></div>
+              <div class="card" style="padding:10px 13px"><h3 style="font-size:14px">Patrimonio e identidad</h3><p>Sistematización y digitalización de un acervo que devuelve a Támara y Trinidad una pieza clave de su memoria colectiva.</p></div>
+              <div class="card" style="padding:10px 13px"><h3 style="font-size:14px">Modelo replicable</h3><p>Una propuesta de rescate archivístico aplicable a otros contextos rurales e invisibilizados de Colombia.</p></div>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow" style="color:#8A4A1E; margin-bottom:10px">Futuras líneas de indagación</p>
+            <div class="grid" style="gap:9px">
+              <div class="card" style="padding:10px 13px"><h3 style="font-size:14px">Circuitos comerciales</h3><p>Microhistoria del comercio entre la cordillera Oriental y los Llanos.</p></div>
+              <div class="card" style="padding:10px 13px"><h3 style="font-size:14px">Postconflicto y periferias</h3><p>Reconstrucción comunitaria en los años cincuenta e integración de historia oral con archivística.</p></div>
+              <div class="card" style="padding:10px 13px"><h3 style="font-size:14px">Historiografía local</h3><p>Repositorios departamentales y nacionales para la historia político-administrativa de Trinidad y Casanare.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="card card--accent" style="padding:14px 18px">
+          <p style="font-family:var(--serif); font-size:19px; line-height:1.42; font-style:italic; margin:0; color:rgba(27,22,17,.9)">Los archivos personales dejan de ser un recurso complementario para consolidarse como auténticos soportes probatorios de resistencia frente al olvido.</p>
+        </div>
+        <div class="grid g3" style="gap:10px">
+          <div class="card" style="padding:10px 13px"><span class="num">Escala</span><p style="font-size:11.8px; line-height:1.45">Del caso individual a un modelo: lo que se probó con una familia puede aplicarse a otros personajes locales sin expediente.</p></div>
+          <div class="card" style="padding:10px 13px"><span class="num">Método transferible</span><p style="font-size:11.8px; line-height:1.45">Los cuatro instrumentos de registro y la matriz de triangulación quedan disponibles para futuras investigaciones.</p></div>
+          <div class="card" style="padding:10px 13px"><span class="num">Compromiso</span><p style="font-size:11.8px; line-height:1.45">Devolver el acervo digitalizado a la comunidad es parte del resultado, no un anexo posterior.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Presentar los tres aportes y los tres horizontes de continuidad en paralelo.</li>
+      <li>Leer la frase de cierre como transición hacia las recomendaciones.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 34 · RECOMENDACIONES ================= -->
+<section class="slide" data-theme="dark" data-title="Recomendaciones: cuatro frentes" data-group="Conclusiones" data-min="0.7">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Recomendaciones</p>
+      <h2>Cuatro frentes para que esto no vuelva a perderse</h2>
+      <p class="lead">Dirigidas a la familia, a las instituciones locales, a los archivos parroquiales e históricos y a la propia disciplina.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g4" style="align-items:stretch">
+          <div class="card"><span class="num">Frente 01 · Archivo privado familiar</span><h3 style="font-size:15px">Conservar y abrir</h3><ul class="clean" style="gap:6px"><li><b>Conservación y catalogación:</b> almacenamiento físico idóneo para fotos, prensa y manuscritos.</li><li><b>Repositorio digital:</b> acervo familiar de acceso abierto que evite la dispersión generacional.</li></ul></div>
+          <div class="card"><span class="num">Frente 02 · Instituciones locales</span><h3 style="font-size:15px">Presupuesto y reconocimiento</h3><ul class="clean" style="gap:6px"><li><b>Rescate patrimonial:</b> partidas para fondos archivísticos municipales y Salas de Memoria Local.</li><li><b>Reconocimiento simbólico:</b> puesta en valor de hitos urbanos y rurales de la reconstrucción cívica.</li></ul></div>
+          <div class="card"><span class="num">Frente 03 · Archivos y CIBAR</span><h3 style="font-size:15px">Digitalizar para proteger</h3><ul class="clean" style="gap:6px"><li><b>Preservación:</b> intervención en gacetas oficiales —como El Boyacense, del siglo XIX y sin digitalizar— y en libros parroquiales.</li><li><b>Acceso democrático:</b> capacitación para crear repositorios digitales que protejan los originales.</li></ul></div>
+          <div class="card"><span class="num">Frente 04 · Futuras líneas</span><h3 style="font-size:15px">Tres horizontes</h3><ul class="clean" style="gap:6px"><li>Circuitos comerciales cordillera–Llanos.</li><li>Postconflicto y reconstrucción comunitaria de los años cincuenta.</li><li>Historiografía político-administrativa de Trinidad y Casanare.</li></ul></div>
+        </div>
+        <div class="grid g2" style="gap:12px">
+          <div class="kpi" style="padding:11px 14px"><b style="font-size:26px">Repositorio digital</b><span style="margin-top:3px">Acción concreta para la familia</span></div>
+          <div class="kpi" style="padding:11px 14px"><b style="font-size:26px">Salas de Memoria Local</b><span style="margin-top:3px">Acción concreta para los municipios</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Recorrer los cuatro frentes con una acción concreta cada uno.</li>
+      <li>Destacar dos medidas: repositorio digital familiar y Salas de Memoria Local en bibliotecas públicas.</li>
+    </ul>
+    <h3>Cuidados</h3>
+    <p class="warn">No atribuir las recomendaciones a terceros: son propuestas de la autora.</p>
+  </div>
+</section>
+
+<!-- ================= 35 · REFERENCIAS ================= -->
+<section class="slide" data-theme="paper" data-title="Fuentes y referencias citadas" data-group="Cierre" data-min="0.5">
+  <div class="pad">
+    <hr class="rule">
+    <div class="shead">
+      <p class="eyebrow">Fuentes</p>
+      <h2>Referencias citadas en esta presentación</h2>
+      <p class="lead">Todas provienen de la lista de referencias del documento de grado. El listado completo —71 referencias— consta en el capítulo final de la tesis.</p>
+    </div>
+    <div class="sbody">
+      <div class="sgap">
+        <div class="grid g2" style="gap:18px; align-items:start">
+          <div class="col" style="display:flex; flex-direction:column; gap:9px; font-size:11.6px; line-height:1.45">
+            <p style="margin:0">Arias, F. G. (2012). <i>El proyecto de investigación: Introducción a la metodología científica</i> (6.ª ed.). Episteme.</p>
+            <p style="margin:0">Benítez Ortiz, A. (2010). <i>Támara: 1544-1900</i>. Editorial Linotipia Bolívar.</p>
+            <p style="margin:0">Bloch, M. (2001). <i>Apología para la historia o el oficio de historiador</i>. Fondo de Cultura Económica.</p>
+            <p style="margin:0">Bolívar Botía, A. (2002). El estudio de caso como informe biográfico-narrativo. <i>Arbor, 171</i>(675), 559-578.</p>
+            <p style="margin:0">Franco García, R. (2024). <i>Historia de Orocué</i> (2.ª ed.). Ministerio de las Culturas, las Artes y los Saberes; Biblioteca Nacional de Colombia.</p>
+            <p style="margin:0">Godoy, A. S. (1995). Introdução à pesquisa qualitativa e suas possibilidades. <i>Revista de Administração de Empresas, 35</i>(2), 57-63.</p>
+          </div>
+          <div class="col" style="display:flex; flex-direction:column; gap:9px; font-size:11.6px; line-height:1.45">
+            <p style="margin:0">Jiménez Pérez, J. (2021) — citado en el epígrafe del marco teórico según el documento de grado.</p>
+            <p style="margin:0">Le Goff, J. (1991) y Ricoeur, P. (2000) — referidos en el marco teórico del documento de grado.</p>
+            <p style="margin:0">Vasilachis de Gialdino, I. (2006). <i>Estrategias de investigación cualitativa</i>. Gedisa.</p>
+            <p style="margin:0">Vega Gómez, compilación citada en el documento de grado (2021).</p>
+            <p style="margin:0">Yin, R. K. (1994). <i>Investigación sobre estudio de casos: Diseño y métodos</i> (2.ª ed.).</p>
+            <p style="margin:0">Colombia. Ley 1581 de 2012, por la cual se dictan disposiciones generales para la protección de datos personales.</p>
+          </div>
+        </div>
+        <hr class="hr">
+        <div class="grid g3" style="gap:10px">
+          <div class="card" style="padding:10px 13px"><span class="num">Corpus citado</span><p style="font-size:11.8px">T001–T005 · PB001 · PM001 · PM002 · F001 · F002 · NP001 · NP002 · HB001 · L001 · L002 · R001 · R002</p></div>
+          <div class="card" style="padding:10px 13px"><span class="num">Prensa</span><p style="font-size:11.8px">El Tiempo, 30 de septiembre de 1954 (NP001). Hemeroteca de la Biblioteca Luis Ángel Arango. Corresponsalía de Plazas Olarte.</p></div>
+          <div class="card" style="padding:10px 13px"><span class="num">Archivos</span><p style="font-size:11.8px">Parroquia La Inmaculada Concepción (Támara) · Parroquia Nuestra Señora de la Asunción (San Luis de Palenque) · Archivo Histórico de Boyacá · Registradurías de Támara y Trinidad.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Ofrecer las referencias para el jurado y aclarar que es una selección de las 71 del documento.</li>
+      <li>Recordar que las citas del marco teórico se conservan tal como aparecen en el documento de grado.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 36 · CIERRE ================= -->
+<section class="slide" data-theme="fire" data-title="Cierre" data-group="Cierre" data-min="0.5">
+  <div class="pad">
+    <hr class="rule">
+    <div class="sbody" style="display:flex; flex-direction:column; justify-content:center; gap:22px">
+      <p class="eyebrow">Cierre</p>
+      <blockquote class="blockquote" style="font-size:36px; max-width:28ch; line-height:1.24">A un hombre que no dejó papeles, lo salvó <em>la palabra de otros</em>.</blockquote>
+      <p style="margin:0; font-size:14.6px; line-height:1.6; color:rgba(239,231,218,.76); max-width:76ch">Arcenio Fernández Vega no dejó expediente, pero dejó algo más difícil de quemar: una ética que sus hijos repitieron durante cinco entrevistas sin haberse puesto de acuerdo. Esta investigación no prueba su vida entera; prueba que la archivística puede reconstruir una trayectoria con lo que el fuego no alcanzó — y que decir con precisión lo que no se sabe también es un resultado.</p>
+      <div class="grid g2" style="gap:14px; max-width:820px">
+        <div class="card" style="padding:12px 15px"><span class="num">Agradecimientos</span><p style="font-size:12.4px">A Janet Arturo, Herminsul Joaquín, Bladimir y Ana Joaquina Fernández Salcedo, y a Pedro Aníbal Rivera Montoya, por prestar su memoria. A la profesora Aída, que acompañó los primeros pasos, y al profesor Alfredo Luis Menéndez Echavarría, por su orientación.</p></div>
+        <div class="card" style="padding:12px 15px"><span class="num">Nota sobre esta presentación</span><p style="font-size:12.4px">Construida exclusivamente a partir del documento de grado y sus anexos. No introduce datos, citas ni testimonios nuevos. Los consentimientos informados no se reproducen.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Decir</h3>
+    <ul>
+      <li>Agradecer a las personas participantes y al director.</li>
+      <li>Dejar la frase de cierre y quedar disponible para preguntas del jurado.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 37 · PREGUNTAS ================= -->
+<section class="slide" data-theme="dark" data-title="Preguntas del jurado" data-group="Cierre" data-min="0.3">
+  <div class="pad">
+    <hr class="rule">
+    <div class="sbody" style="display:flex; flex-direction:column; justify-content:center; gap:26px">
+      <p class="eyebrow">Sustentación pública</p>
+      <h2 style="font-size:64px; line-height:1.02">Gracias.<br><span style="color:var(--brasa-l); font-style:italic">Quedo atenta a sus preguntas.</span></h2>
+      <div class="grid g3" style="gap:12px; max-width:1000px">
+        <div class="card" style="padding:11px 14px"><span class="num">Para volver</span><p style="font-size:12.2px"><kbd>O</kbd> abre el índice de todas las diapositivas · <kbd>N</kbd> abre el guion · <kbd>←</kbd> <kbd>→</kbd> navegan.</p></div>
+        <div class="card" style="padding:11px 14px"><span class="num">Ficha</span><p style="font-size:12.2px">Fernández Girón, D. J. (2026). <i>Recuperación de información sobre la trayectoria e incidencia pública de Arcenio Fernández Vega…</i> [Trabajo de grado, Pontificia Universidad Javeriana].</p></div>
+        <div class="card" style="padding:11px 14px"><span class="num">Programa</span><p style="font-size:12.2px">Ciencia de la Información, Bibliotecología y Archivística · Facultad de Comunicación y Lenguaje · Bogotá, 2026.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="notes">
+    <h3>Si preguntan</h3>
+    <ul>
+      <li>Por qué no hay partida de bautismo: la búsqueda en Támara no la localizó; el año se deduce de PM002.</li>
+      <li>Por qué no se confirman las alcaldías: no se hallaron decretos ni gacetas con el nombramiento.</li>
+      <li>Por qué el caso es archivístico y no solo histórico: el objeto es la recuperación de información y las condiciones de posibilidad del archivo.</li>
+    </ul>
+  </div>
+</section>
+
+</div><!-- /deck -->
+
+<!-- ============ PANELES ============ -->
+<aside class="panel" id="panel-notes" aria-hidden="true" aria-label="Guion del expositor">
+  <div class="panel-head">
+    <div>
+      <span class="k">Guion del expositor</span>
+      <h2 id="pn-title">Portada</h2>
+    </div>
+    <button class="tool" data-close="panel-notes" aria-label="Cerrar guion">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="panel-body" id="pn-body"></div>
+  <div class="panel-foot"><span id="pn-pos">1 / 37</span><span class="timebox" id="pn-time">0 min</span></div>
+</aside>
+
+<div class="ov" id="ov-index" aria-hidden="true" role="dialog" aria-label="Índice de diapositivas">
+  <div class="ov-head">
+    <div>
+      <h2>Índice de diapositivas</h2>
+      <p>Haz clic para ir a cualquier diapositiva · <kbd>O</kbd> para abrir o cerrar este índice</p>
+    </div>
+    <button class="tool" data-close="ov-index" aria-label="Cerrar índice">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="ov-body" id="idx-body"></div>
+</div>
+
+<div class="ov" id="ov-help" aria-hidden="true" role="dialog" aria-label="Ayuda y atajos">
+  <div class="ov-head">
+    <div><h2>Atajos de la presentación</h2><p>Todo lo necesario para exponer sin tocar el ratón</p></div>
+    <button class="tool" data-close="ov-help" aria-label="Cerrar ayuda">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="ov-body">
+    <div class="help-grid">
+      <div>
+        <div class="help-row"><span>Diapositiva siguiente</span><span><kbd>→</kbd> <kbd>↓</kbd> <kbd>Av Pág</kbd> <kbd>Espacio</kbd></span></div>
+        <div class="help-row"><span>Diapositiva anterior</span><span><kbd>←</kbd> <kbd>↑</kbd> <kbd>Re Pág</kbd></span></div>
+        <div class="help-row"><span>Primera / última</span><span><kbd>Inicio</kbd> / <kbd>Fin</kbd></span></div>
+        <div class="help-row"><span>Índice de diapositivas</span><span><kbd>O</kbd></span></div>
+        <div class="help-row"><span>Guion del expositor</span><span><kbd>N</kbd></span></div>
+      </div>
+      <div>
+        <div class="help-row"><span>Cronómetro</span><span><kbd>T</kbd></span></div>
+        <div class="help-row"><span>Vista de presentador</span><span><kbd>V</kbd></span></div>
+        <div class="help-row"><span>Pantalla completa</span><span><kbd>F</kbd></span></div>
+        <div class="help-row"><span>Pantalla en negro</span><span><kbd>B</kbd></span></div>
+        <div class="help-row"><span>Imprimir o guardar PDF</span><span><kbd>P</kbd></span></div>
+        <div class="help-row"><span>Cerrar ventanas / salir</span><span><kbd>Esc</kbd></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Imagen ampliada">
+  <button class="tool x" data-close="lb" aria-label="Cerrar imagen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <img id="lb-img" alt="">
+  <p class="cap" id="lb-cap"></p>
+</div>
+
+<div class="blackout" id="blackout"></div>
+
+<script>
+(function(){
+  'use strict';
+  var $  = function(s,r){ return (r||document).querySelector(s); };
+  var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+
+  var deck = $('#deck');
+  var slides = $$('.slide', deck);
+  var total = slides.length;
+  var cur = 0;
+  var STAGE_W = 1280, STAGE_H = 720;
+
+  /* ---------- Escalado del escenario ---------- */
+  var rotateMode = false;
+  function fit(){
+    var vw = window.innerWidth, vh = window.innerHeight;
+    /* Teléfono en vertical: se rota el escenario 90° para aprovechar el alto */
+    var wantRotate = (vh > vw) && (vw < 620);
+    if(wantRotate !== rotateMode){
+      rotateMode = wantRotate;
+      document.body.classList.toggle('force-rotate', rotateMode);
+    }
+    var s;
+    if(rotateMode){
+      /* tras girar: el ancho útil de pantalla es el alto del escenario (720)
+         y el alto útil (menos barra) es el ancho del escenario (1280) */
+      s = Math.min((vw - 8) / STAGE_H, (vh - 56) / STAGE_W);
+      s = Math.max(s, 0.15);
+      document.documentElement.style.setProperty('--rscale', String(s));
+    } else {
+      var availH = vh - (vw < 900 ? 66 : 92);
+      s = Math.min(vw / STAGE_W, availH / STAGE_H);
+      s = Math.max(s, 0.12);
+      document.documentElement.style.setProperty('--rscale', '1');
+      document.documentElement.style.setProperty('--scale', String(s));
+    }
+    if(!rotateMode) document.documentElement.style.setProperty('--scale', String(s));
+    fitSlideBody();
+  }
+
+  /* ---------- Ajuste automático del contenido ---------- */
+  function fitSlideBody(){
+    slides.forEach(function(sl){
+      var body = $('.sbody', sl);
+      if(!body) return;
+      body.style.removeProperty('--fs');
+      var inner = body.firstElementChild;
+      if(!inner) return;
+      var fs = 1, guard = 0;
+      /* solo reduce: nunca amplía por encima de 1 */
+      while (inner.scrollHeight > body.clientHeight + 1 && fs > 0.62 && guard < 40){
+        fs -= 0.02; guard++;
+        body.style.setProperty('--fs', fs.toFixed(3));
+      }
+    });
+  }
+
+  /* ---------- Navegación ---------- */
+  function go(i, opts){
+    i = Math.max(0, Math.min(total - 1, i));
+    if (i === cur && !(opts && opts.force)) return;
+    var dir = i > cur ? 1 : -1;
+    var old = cur;
+    slides.forEach(function(sl, k){
+      sl.classList.remove('is-active','is-prev');
+      if(k === i) sl.classList.add('is-active');
+      else if(k === old && dir > 0) sl.classList.add('is-prev');
+    });
+    cur = i;
+    if (history.replaceState) history.replaceState(null, '', '#' + (cur + 1));
+    syncUI();
+    if (opts && opts.focus) slides[cur].focus({preventScroll:true});
+  }
+  function next(){ go(cur + 1); }
+  function prev(){ go(cur - 1); }
+
+  /* ---------- Barra e indicadores ---------- */
+  function syncUI(){
+    var sl = slides[cur];
+    var t = sl.getAttribute('data-title') || '';
+    $('#u-count').textContent = String(cur + 1).padStart(2,'0') + ' / ' + total;
+    $('#u-bar').style.width = ((cur + 1) / total * 100).toFixed(2) + '%';
+    $('#u-sec').textContent = t;
+    $('#a-prev').disabled = cur === 0;
+    $('#a-next').disabled = cur === total - 1;
+    var pn = $('#pn-title'), pb = $('#pn-body');
+    if(pn) pn.textContent = t;
+    if(pb) pb.innerHTML = renderNotes(sl);
+    var pos = $('#pn-pos'); if(pos) pos.textContent = (cur+1) + ' / ' + total;
+    var tm = $('#pn-time');
+    if(tm){
+      var own = parseFloat(sl.getAttribute('data-min') || '1'); if(isNaN(own)) own = 1;
+      tm.textContent = '≈ ' + (Math.round(own*10)/10) + ' min · acumulado ' + minUpTo(cur) + ' min';
+    }
+    $$('.idx-card').forEach(function(c){ c.classList.toggle('is-current', +c.dataset.i === cur); });
+    try{ sessionStorage.setItem('afv-slide', String(cur)); }catch(e){}
+    if(presenterWin && !presenterWin.closed){
+      try{
+        presenterWin.document.getElementById('clk'); /* asegura que ya cargó */
+      }catch(e){}
+      try{ presenterWin.postMessage({afv:'sync', i:cur}, '*'); }catch(e){}
+    }
+  }
+
+  function renderNotes(sl){
+    var box = $('.notes', sl);
+    if(!box) return '<p class="src">Sin guion para esta diapositiva.</p>';
+    return box.innerHTML;
+  }
+
+  function minUpTo(i){
+    var m = 0;
+    for (var k = 0; k <= i; k++){
+      var v = parseFloat(slides[k].getAttribute('data-min') || '1');
+      m += isNaN(v) ? 1 : v;
+    }
+    return Math.round(m);
+  }
+
+  /* ---------- Índice ---------- */
+  function buildIndex(){
+    var body = $('#idx-body');
+    if(!body) return;
+    var html = '', lastGroup = null;
+    slides.forEach(function(sl, i){
+      var g = sl.getAttribute('data-group') || 'Diapositivas';
+      if(g !== lastGroup){
+        if(lastGroup !== null) html += '</div>';
+        html += '<div class="idx-group">' + g + '</div><div class="idx-grid">';
+        lastGroup = g;
+      }
+      var title = sl.getAttribute('data-title') || ('Diapositiva ' + (i+1));
+      html += '<button class="idx-card" data-i="' + i + '">' +
+                '<span class="n">' + String(i+1).padStart(2,'0') + '</span>' +
+                '<span class="t">' + title + '<span class="s">' + g + '</span></span>' +
+              '</button>';
+    });
+    html += '</div>';
+    body.innerHTML = html;
+    $$('.idx-card', body).forEach(function(b){
+      b.addEventListener('click', function(){
+        go(+b.dataset.i);
+        closeAll();
+      });
+    });
+  }
+
+  /* ---------- Overlays ---------- */
+  var openPanels = [];
+  function openOverlay(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    if(id === 'panel-notes') document.body.classList.add('notes-open');
+    el.classList.add('is-open'); el.setAttribute('aria-hidden','false');
+    if(openPanels.indexOf(id) < 0) openPanels.push(id);
+    $$('#t-index,#t-notes,#t-help').forEach(function(b){
+      b.classList.toggle('is-on',
+        (id === 'ov-index' && b.id === 't-index') ||
+        (id === 'panel-notes' && b.id === 't-notes') ||
+        (id === 'ov-help' && b.id === 't-help'));
+    });
+  }
+  function closeOverlay(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    if(id === 'panel-notes') document.body.classList.remove('notes-open');
+    el.classList.remove('is-open'); el.setAttribute('aria-hidden','true');
+    openPanels = openPanels.filter(function(x){ return x !== id; });
+    if(id === 'ov-index') $('#t-index').classList.remove('is-on');
+    if(id === 'panel-notes') $('#t-notes').classList.remove('is-on');
+    if(id === 'ov-help') $('#t-help').classList.remove('is-on');
+  }
+  function toggleOverlay(id){
+    var el = document.getElementById(id);
+    if(el && el.classList.contains('is-open')) closeOverlay(id); else openOverlay(id);
+  }
+  function closeAll(){
+    ['ov-index','panel-notes','ov-help','lb'].forEach(closeOverlay);
+    $('#blackout').classList.remove('is-on');
+  }
+  $$('[data-close]').forEach(function(b){
+    b.addEventListener('click', function(){ closeOverlay(b.getAttribute('data-close')); });
+  });
+
+  /* ---------- Lightbox ---------- */
+  var FIGCAPS = {
+    retrato: 'Retrato de Arcenio Fernández Vega. Archivo de Ana Joaquina Fernández Salcedo. Restauración con Meta AI.',
+    casa: 'Casa en Támara de la familia Latriglia Fernández, donde Arcenio vivió su infancia y juventud. Documento de grado, anexo 2.',
+    hija: 'Arcenio Fernández Vega con hija del primer matrimonio, nietos y allegados. Archivo familiar de Ana Joaquina Fernández Vega. Restauración con Meta AI.',
+    mula: 'Arcenio Fernández Vega en su mula Bavaria, con sobrinos Latriglia Fernández. Archivo familiar de Ana Joaquina Fernández Vega. Restauración con Meta AI.',
+    sobrinos: 'Arcenio Fernández Vega con sobrinos Latriglia Fernández. Archivo familiar de Ana Joaquina Fernández Vega. Restauración con Meta AI.',
+    familia: 'Familia Fernández Salcedo. Archivo familiar de Ana Joaquina Fernández Vega. Restauración con Meta AI.',
+    tumba: 'Tumba de Arcenio Fernández Vega en el cementerio de San Luis de Palenque, orientada en sentido norte-sur. Documento de grado, anexo 2.',
+    manuscrito: 'Manuscrito de puño y letra de Arcenio Fernández Vega sobre sus mujeres e hijos fuera de los matrimonios. Archivo familiar de Bladimir Fernández Salcedo. Restauración con Meta AI.',
+    carne: 'Carné de usuario de la Caja Agraria de Colombia. Permitió conocer el número de cédula y el lugar de expedición: Trinidad. Archivo familiar de Ana Joaquina Fernández Vega.',
+    bautismo: 'Partida de bautismo de Ana Joaquina Fernández Vega, bautismo del 25 de abril de 1881. Archivo de Daisy Johana Fernández Girón (2026).',
+    matrimonio_latriglia: 'Partida de matrimonio de Víctor Latriglia y Ana Joaquina Fernández. Libro 4, folio 22, n.º 29; 24 de septiembre de 1898.',
+    matrimonio_arcenio: 'Partida de matrimonio de Arcenio Fernández Vega y María Ignacia Salcedo. San Luis de Palenque, 10 de julio de 1965.',
+    prensa1: 'NP001 · El Tiempo, 30 de septiembre de 1954: «Que la reconstrucción urbana de Trinidad sea permitida, se solicita». Hemeroteca de la Biblioteca Luis Ángel Arango.',
+    prensa2: 'NP002 · Nota de prensa sobre la reconstrucción de Trinidad. Tipografía y estilo de El Tiempo; fecha por determinar. Archivo familiar de Ana Joaquina Fernández Salcedo.'
+  };
+  var lb = $('#lb'), lbImg = $('#lb-img'), lbCap = $('#lb-cap');
+  function openLB(key){
+    var img = document.querySelector('img[data-lb="' + key + '"]');
+    if(!img) return;
+    lbImg.src = img.getAttribute('src');
+    lbImg.alt = img.getAttribute('alt') || '';
+    lbCap.textContent = FIGCAPS[key] || '';
+    openOverlay('lb');
+  }
+  document.addEventListener('click', function(ev){
+    var img = ev.target.closest && ev.target.closest('img[data-lb]');
+    if(img){ ev.preventDefault(); openLB(img.getAttribute('data-lb')); }
+  });
+
+  /* ---------- Cronómetro ---------- */
+  var t0 = null, tick = null;
+  function fmt(sec){
+    var m = Math.floor(sec/60), s = sec % 60;
+    return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  }
+  function clockToggle(){
+    var el = $('#u-clock');
+    if(tick){ clearInterval(tick); tick = null; el.hidden = true; $('#t-timer').classList.remove('is-on'); return; }
+    if(!t0) t0 = Date.now();
+    el.hidden = false; $('#t-timer').classList.add('is-on');
+    tick = setInterval(function(){
+      var sec = Math.floor((Date.now() - t0)/1000);
+      el.textContent = fmt(sec);
+      el.style.color = sec > 25*60 ? '#D98A6A' : '';
+    }, 500);
+    el.textContent = fmt(Math.floor((Date.now() - t0)/1000));
+  }
+
+  /* ---------- Vista de presentador ---------- */
+  function openPresenter(){
+    var w = window.open('', 'afv-presenter', 'width=1180,height=760,menubar=no,toolbar=no,location=no,status=no');
+    if(!w){ alert('El navegador bloqueó la ventana emergente. Permite las ventanas emergentes para usar la vista de presentador.'); return; }
+    var esc = function(t){ return String(t == null ? '' : t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
+    var curTitle = slides[cur].getAttribute('data-title') || '';
+    var nxtTitle = cur + 1 < total ? (slides[cur+1].getAttribute('data-title') || '') : 'Fin de la presentación';
+    var curNotes = renderNotes(slides[cur]);
+    var nxtNotes = cur + 1 < total ? renderNotes(slides[cur+1]) : '<p class="src">No hay más diapositivas.</p>';
+    var own = parseFloat(slides[cur].getAttribute('data-min') || '1') || 1;
+    var acum = minUpTo(cur);
+    var html = '<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Vista de presentador · Huellas que vencieron el fuego</title>' +
+      '<style>' +
+      ':root{--ink:#12100E;--paper:#EFE7DA;--brasa:#B4632B;--brasa-l:#D07C42;--ash:#8B8175;' +
+      '--serif:Georgia,"Palatino Linotype",Palatino,serif;' +
+      '--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;' +
+      '--mono:ui-monospace,Menlo,Consolas,monospace}' +
+      '*{box-sizing:border-box}body{margin:0;background:#0B0A09;color:var(--paper);font-family:var(--sans);' +
+      'display:grid;grid-template-columns:1fr 380px;grid-template-rows:auto 1fr;height:100vh;overflow:hidden}' +
+      'header{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;padding:10px 18px;' +
+      'border-bottom:1px solid rgba(239,231,218,.14);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}' +
+      'header b{color:var(--paper);font-family:var(--serif);text-transform:none;letter-spacing:.02em;font-size:13px;font-weight:600}' +
+      '.clock{font-family:var(--mono);font-size:20px;color:var(--brasa-l);letter-spacing:.05em}' +
+      '.clock.warn{color:#D98A6A}' +
+      '.main{padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-height:0}' +
+      '.slidebox{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;' +
+      'background:#0F0D0B;border:1px solid rgba(239,231,218,.12);border-radius:2px;overflow:hidden}' +
+      '.slidebox iframe{width:100%;height:100%;border:0;transform-origin:center center}' +
+      '.lbl{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ash);margin:0 0 4px}' +
+      '.title{font-family:var(--serif);font-size:19px;line-height:1.25;margin:0;letter-spacing:-.01em}' +
+      '.side{border-left:1px solid rgba(239,231,218,.12);padding:16px 18px;overflow:auto;min-height:0;display:flex;flex-direction:column;gap:16px}' +
+      '.notes h3{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ash);margin:0 0 6px;font-weight:650}' +
+      '.notes ul{margin:0 0 10px;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}' +
+      '.notes li{position:relative;padding-left:14px;font-size:13px;line-height:1.5;color:rgba(239,231,218,.88)}' +
+      '.notes li::before{content:"";position:absolute;left:0;top:.6em;width:4px;height:4px;background:var(--brasa);border-radius:50%}' +
+      '.notes .warn{font-size:12.5px;line-height:1.5;color:#D98A6A;border-left:2px solid rgba(196,105,75,.6);padding-left:11px}' +
+      '.notes .src{font-size:11px;color:var(--ash)}' +
+      '.next{background:rgba(239,231,218,.04);border:1px solid rgba(239,231,218,.12);border-radius:2px;padding:11px 13px}' +
+      '.next .title{font-size:15px}' +
+      '.meta{display:flex;gap:20px;font-size:11px;color:var(--ash);border-top:1px solid rgba(239,231,218,.1);padding-top:10px}' +
+      '.meta b{display:block;color:var(--paper);font-family:var(--mono);font-size:13px;letter-spacing:.04em;margin-top:2px}' +
+      '.kbd{font-family:var(--mono);font-size:10px;border:1px solid rgba(239,231,218,.22);border-bottom-width:2px;border-radius:3px;padding:1px 5px;color:var(--paper)}' +
+      'footer{grid-column:1/-1;padding:7px 18px;border-top:1px solid rgba(239,231,218,.12);font-size:10.5px;color:var(--ash);display:flex;gap:16px;align-items:center}' +
+      '</style></head><body>' +
+      '<header><span><b>Huellas que vencieron el fuego</b> &nbsp;·&nbsp; Vista de presentador</span>' +
+      '<span class="clock" id="clk">00:00</span></header>' +
+      '<div class="main">' +
+        '<div><p class="lbl">Diapositiva actual</p><p class="title" id="cur-t">' + esc(curTitle) + '</p></div>' +
+        '<div class="slidebox"><iframe id="pv" src="' + location.pathname.split('/').pop() + '#' + (cur+1) + '"></iframe></div>' +
+      '</div>' +
+      '<aside class="side">' +
+        '<div class="notes" id="notes">' + curNotes + '</div>' +
+        '<div class="next"><p class="lbl">A continuación</p><p class="title" id="nx-t">' + esc(nxtTitle) + '</p>' +
+          '<div class="notes" id="nx-notes" style="margin-top:8px;opacity:.72">' + nxtNotes + '</div></div>' +
+        '<div class="meta"><div>Diapositiva<b>' + own + ' min</b></div><div>Acumulado<b id="acc">' + acum + ' min</b></div><div>Diapositiva<b>' + (cur+1) + ' / ' + total + '</b></div></div>' +
+      '</aside>' +
+      '<footer><span><span class="kbd">←</span> <span class="kbd">→</span> navegar aquí</span>' +
+      '<span><span class="kbd">Esc</span> cerrar</span>' +
+      '<span style="margin-left:auto">Los cambios se reflejan en la ventana principal</span></footer>' +
+      '<script>' +
+      'var TOTAL=' + total + ';' +
+      'var mins=' + JSON.stringify(slides.map(function(x){ return parseFloat(x.getAttribute('data-min')||'1')||1; })) + ';' +
+      'var titles=' + JSON.stringify(slides.map(function(x){ return x.getAttribute('data-title')||''; })) + ';' +
+      'var notes=' + JSON.stringify(slides.map(function(x){ return renderNotes(x); })) + ';' +
+      'var idx=0; var t0=Date.now(); var warnAt=0;' +
+      'function esc(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;");}' +
+      'function show(i){ idx=Math.max(0,Math.min(TOTAL-1,i));' +
+      '  document.getElementById("cur-t").textContent=titles[idx];' +
+      '  document.getElementById("nx-t").textContent=(idx+1<TOTAL)?titles[idx+1]:"Fin de la presentación";' +
+      '  document.getElementById("notes").innerHTML=notes[idx];' +
+      '  document.getElementById("nx-notes").innerHTML=(idx+1<TOTAL)?notes[idx+1]:"<p class=src>No hay más diapositivas.</p>";' +
+      '  var acc=0; for(var k=0;k<=idx;k++) acc+=mins[k];' +
+      '  document.getElementById("acc").textContent=Math.round(acc)+" min";' +
+      '  warnAt=acc*60000; document.getElementById("pv").src=location.pathname.split("/").pop()+"#"+(idx+1);' +
+      '  try{ if(window.opener) window.opener.postMessage({afv:"goto", i:idx}, "*"); }catch(e){}' +
+      '}' +
+      'document.addEventListener("keydown",function(e){' +
+      '  if(e.key==="ArrowRight"||e.key==="PageDown"||e.key===" "){e.preventDefault();show(idx+1);}' +
+      '  else if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();show(idx-1);}' +
+      '  else if(e.key==="Home"){e.preventDefault();show(0);}' +
+      '  else if(e.key==="End"){e.preventDefault();show(TOTAL-1);}' +
+      '  else if(e.key==="Escape"){window.close();}' +
+      '});' +
+      'setInterval(function(){ var s=Math.floor((Date.now()-t0)/1000);' +
+      '  var el=document.getElementById("clk");' +
+      '  el.textContent=String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");' +
+      '  el.className="clock"+(warnAt&&(Date.now()-t0)>warnAt?" warn":"");' +
+      '},400);' +
+      'window.addEventListener("message",function(ev){ if(ev.data&&ev.data.afv==="sync"){ show(ev.data.i); } });' +
+      'show(' + cur + ');' +
+      '<\/script></body></html>';
+    w.document.open(); w.document.write(html); w.document.close();
+    presenterWin = w;
+    try{ w.focus(); }catch(e){}
+    /* respaldo: si el navegador la trata como pestaña, la traemos al frente */
+    setTimeout(function(){ try{ if(w && !w.closed){ w.document.title = w.document.title; } }catch(e){} }, 300);
+  }
+  var presenterWin = null;
+  window.addEventListener('message', function(ev){
+    if(ev.data && ev.data.afv === 'goto' && typeof ev.data.i === 'number'){ go(ev.data.i); }
+  });
+
+  /* ---------- Pantalla completa ---------- */
+  function fullscreen(){
+    var d = document.documentElement;
+    if(!document.fullscreenElement && !document.webkitFullscreenElement){
+      (d.requestFullscreen || d.webkitRequestFullscreen || function(){}).call(d);
+    } else {
+      (document.exitFullscreen || document.webkitExitFullscreen || function(){}).call(document);
+    }
+  }
+
+  /* ---------- Teclado ---------- */
+  document.addEventListener('keydown', function(ev){
+    var tag = (ev.target.tagName || '').toLowerCase();
+    if(tag === 'input' || tag === 'textarea') return;
+    var k = ev.key;
+
+    if(k === 'Escape'){ 
+      if(openPanels.length){ closeAll(); ev.preventDefault(); }
+      return;
+    }
+    if(k === 'ArrowRight' || k === 'ArrowDown' || k === 'PageDown' || k === ' ' || k === 'Enter'){
+      if(openPanels.indexOf('lb') >= 0){ ev.preventDefault(); return; }
+      ev.preventDefault(); next(); return;
+    }
+    if(k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp'){
+      ev.preventDefault(); prev(); return;
+    }
+    if(k === 'Home'){ ev.preventDefault(); go(0); return; }
+    if(k === 'End'){ ev.preventDefault(); go(total-1); return; }
+    if(k === 'o' || k === 'O'){ ev.preventDefault(); toggleOverlay('ov-index'); return; }
+    if(k === 'n' || k === 'N'){ ev.preventDefault(); toggleOverlay('panel-notes'); return; }
+    if(k === 't' || k === 'T'){ ev.preventDefault(); clockToggle(); return; }
+    if(k === 'f' || k === 'F'){ ev.preventDefault(); fullscreen(); return; }
+    if(k === 'p' || k === 'P'){ ev.preventDefault(); window.print(); return; }
+    if(k === 'v' || k === 'V'){ ev.preventDefault(); openPresenter(); return; }
+    if(k === 'b' || k === 'B'){ ev.preventDefault(); $('#blackout').classList.toggle('is-on'); return; }
+    if(k === '?' || k === 'h' || k === 'H'){ ev.preventDefault(); toggleOverlay('ov-help'); return; }
+  });
+
+  /* ---------- Gestos táctiles ---------- */
+  var sx = 0, sy = 0, tracking = false;
+  deck.addEventListener('touchstart', function(e){
+    if(e.touches.length !== 1) return;
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; tracking = true;
+  }, {passive:true});
+  deck.addEventListener('touchend', function(e){
+    if(!tracking) return; tracking = false;
+    var t = e.changedTouches[0];
+    var dx = t.clientX - sx, dy = t.clientY - sy;
+    if(Math.abs(dx) > 46 && Math.abs(dx) > Math.abs(dy) * 1.4){ if(dx < 0) next(); else prev(); }
+  }, {passive:true});
+
+  /* ---------- Botones ---------- */
+  $('#a-prev').addEventListener('click', prev);
+  $('#a-next').addEventListener('click', next);
+  $('#t-index').addEventListener('click', function(){ toggleOverlay('ov-index'); });
+  $('#t-notes').addEventListener('click', function(){ toggleOverlay('panel-notes'); });
+  $('#t-timer').addEventListener('click', clockToggle);
+  $('#t-print').addEventListener('click', function(){ window.print(); });
+  $('#t-presenter').addEventListener('click', openPresenter);
+  $('#t-full').addEventListener('click', fullscreen);
+  $('#t-help').addEventListener('click', function(){ toggleOverlay('ov-help'); });
+
+  /* ---------- Arranque ---------- */
+  function boot(){
+    buildIndex();
+    var start = 0;
+    var h = (location.hash || '').replace('#','');
+    if(h && !isNaN(+h)){ start = Math.min(total-1, Math.max(0, +h - 1)); }
+    else {
+      try{
+        var s = sessionStorage.getItem('afv-slide');
+        if(s !== null && !isNaN(+s)) start = Math.min(total-1, Math.max(0, +s));
+      }catch(e){}
+    }
+    slides.forEach(function(sl, k){
+      sl.classList.remove('is-active','is-prev');
+      if(k === start) sl.classList.add('is-active');
+      sl.setAttribute('tabindex','-1');
+    });
+    cur = start;
+    fit();
+    syncUI();
+    /* segunda pasada: imágenes y fuentes ya cargadas */
+    window.addEventListener('load', function(){ fit(); });
+    setTimeout(fit, 120);
+    setTimeout(fit, 600);
+    if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fitSlideBody); }
+    var hint = $('#hint');
+    setTimeout(function(){ hint.classList.add('is-hidden'); }, 5200);
+    var rt = $('#rotate-tip');
+    if(rt) setTimeout(function(){ rt.classList.add('is-hidden'); }, 8000);
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', function(){
+    var h = (location.hash || '').replace('#','');
+    if(h && !isNaN(+h)) go(Math.min(total-1, Math.max(0, +h - 1)));
+  });
+  window.addEventListener('orientationchange', function(){ setTimeout(fit, 200); });
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
+</body>
+</html>
